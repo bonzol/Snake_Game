@@ -1,3 +1,4 @@
+
 const board = document.getElementById("snakeboard");
 
 var BOARD_COLOR = "#5adaaf";
@@ -23,26 +24,27 @@ board.style.height = BOARD_HEIGHT + "px";
 var ctx = board.getContext("2d");
 
 
-// the snake 
-const snake = {
-    place: [
-        { x:BOARD_WIDTH/2, y:BOARD_HEIGHT/2 },
-        { x:BOARD_WIDTH/2-SNAKE_WIDTH, y:BOARD_HEIGHT/2 },
-        { x:BOARD_WIDTH/2-SNAKE_WIDTH*2, y:BOARD_HEIGHT/2 }
-    ],
-    lastPlace: { x:BOARD_WIDTH/2-SNAKE_WIDTH*3, y:BOARD_HEIGHT/2 },
-    size: {
-        width: SNAKE_WIDTH,
-        height: SNAKE_HEIGHT
-    },
-    direction: 'right',
-    speed: function() {
-        return SNAKE_SPEED - snake.level*10;
-    },
-    level: 1,
-    points: 0
+class SnakeModel {
+    constructor(){
+        this.place = [
+            { x:BOARD_WIDTH/2, y:BOARD_HEIGHT/2 },
+            { x:BOARD_WIDTH/2-SNAKE_WIDTH, y:BOARD_HEIGHT/2 },
+            { x:BOARD_WIDTH/2-SNAKE_WIDTH*2, y:BOARD_HEIGHT/2 }
+        ];
+        this.lastPlace = { x:BOARD_WIDTH/2-SNAKE_WIDTH*3, y:BOARD_HEIGHT/2 };
+        this.size = {
+            width: SNAKE_WIDTH,
+            height: SNAKE_HEIGHT
+        };
+        this.direction = 'right'
+        this.speed = function() {
+            return SNAKE_SPEED - snake.level*10;
+        };
+        this.level = 1;
+        this.points = 0;
+    }
 }
-console.log(snake);
+
 //the food
 const food = {
     place: {
@@ -87,7 +89,15 @@ function logKey(e) {
     }
 }
 
+    var snake;
+    var startFirst = false;
 function start() {
+    if(startFirst) {
+        startAgain();
+    }
+    startFirst = true;
+    snake = new SnakeModel();
+    console.log(snake);
     document.getElementById("score").innerHTML = snake.points;
     document.getElementById("level").innerHTML = "Level " + snake.level;
     SNAKE_SPEED = 500 - document.getElementById("speed").value;
@@ -167,7 +177,6 @@ function checkifEaten() {
 
 function checkLevel() {
     snake.level = Math.floor(snake.points/100)+1;
-    // snake.speed = SNAKE_SPEED - snake.level*10;
     clearInterval(repeater);
     repeater = setInterval(move, snake.speed());
 }
@@ -225,13 +234,8 @@ function randomFoodPlace() {
 }
 
 
-// function clearBoard() {
-//     ctx.fillStyle = "#7fffd4"
-//     ctx.fillRect(0, 0, 400, 400);
-//     snake.place[0].x = 0;
-//     snake.place[0].y = 0;
-//     snake.size.width = 20;
-//     snake.size.height = 20;
-//     snake.points = 0;
-//     snake.speed = 800;
-// }
+function startAgain() {
+    ctx.fillStyle = BOARD_COLOR;
+    ctx.fillRect(0, 0, 400, 400);
+    clearInterval(repeater);
+}
