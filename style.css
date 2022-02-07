@@ -1,0 +1,59 @@
+body {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.containerCol {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    
+}
+
+.containerRow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    
+    
+}
+.containerInput {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+input {
+    width: 100%;
+}
+.inputs {
+    text-align: center;
+    width: 40%;
+}
+
+#snakeboard {
+    border: 1px solid black;
+    /* background-color: #5adaaf; */
+}
+
+.btn {
+    padding: 15px;
+    border-radius: 20%;
+    background-color: aliceblue;
+    color: #000000; 
+    margin: 5px;
+}
+
+h2 {
+    margin-top: 60px;
+}
+.btn:hover {
+    background-color: black;
+    color: #f0f8ff; 
+}

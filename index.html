@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="containerCol">
+        
+        <h2>Snake</h2>
+        <p id="level">Level 1</p>
+        <p id="score">0</p>
+    </div>
+        <div class="containerRow">
+            <div class="containerInput">
+                <div class="inputs">
+                    <p>Snake Speed</p>
+                    <input id="speed" type="range" placeholder="130" min="0" max="500">
+                    <p>Board Color</p>
+                    <input id="boardColor" type="color">
+                    <p>Snake Color</p>
+                    <input id="SnakeColor" type="color">
+                    <p>Food Color</p>
+                    <input id="FoodColor" type="color">
+                </div>
+            </div>
+            <div>
+                <canvas id="snakeboard" width="400" height="400"></canvas>
+            </div>
+            <div class="containerInput"></div>
+        </div>
+<div class="containerCol">
+
+    <button class="btn" onclick="start()">Start</button>
+  
+</div>
+
+    <script src="./app.js"></script>
+</body>
+</html>
