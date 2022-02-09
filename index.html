@@ -7,9 +7,8 @@
     <title>Snake Game</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body onload="init()">
     <div class="containerCol">
-        
         <h2>Snake</h2>
         <p id="level">Level 1</p>
         <p id="score">0</p>
@@ -23,6 +22,8 @@
                     <input id="boardColor" type="color">
                     <p>Snake Color</p>
                     <input id="SnakeColor" type="color">
+                    <p>Snake Head Color</p>
+                    <input id="SnakeHeadColor" type="color">
                     <p>Food Color</p>
                     <input id="FoodColor" type="color">
                 </div>
@@ -30,7 +31,13 @@
             <div>
                 <canvas id="snakeboard" width="400" height="400"></canvas>
             </div>
-            <div class="containerInput"></div>
+            <div class="containerScores">
+                <table id="scores">
+                    <tr>
+                      <th>High Score</th>
+                    </tr>
+                  </table>
+            </div>
         </div>
 <div class="containerCol">
 

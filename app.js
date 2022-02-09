@@ -1,28 +1,15 @@
-
 const board = document.getElementById("snakeboard");
-
-var BOARD_COLOR = "#5adaaf";
-document.getElementById("snakeboard").style.backgroundColor = BOARD_COLOR;
-document.getElementById("boardColor").value = BOARD_COLOR;
-
-var SNAKE_COLOR = "black";
-document.getElementById("SnakeColor").value = SNAKE_COLOR;
-
-var FOOD_COLOR = "rgb(160, 110, 52)";
-document.getElementById("FoodColor").value = FOOD_COLOR;
-
+const ctx = board.getContext("2d");
 var BOARD_WIDTH = 400;
 var BOARD_HEIGHT = 400;
 var SNAKE_WIDTH = Math.sqrt(BOARD_WIDTH);
 var SNAKE_HEIGHT = Math.sqrt(BOARD_HEIGHT);
-var SNAKE_SPEED = 500 - document.getElementById("speed").value;
-document.getElementById("speed").value = 370;
-
-
-board.style.width = BOARD_WIDTH + "px";
-board.style.height = BOARD_HEIGHT + "px";
-var ctx = board.getContext("2d");
-
+var SNAKE_SPEED = 160;
+var BOARD_COLOR = "#5adaaf";
+var SNAKE_COLOR = "#000000";
+var SNAKE_HEAD_COLOR = "#FFFFFF";
+var FOOD_COLOR = "#FF0000";
+const scores = [];
 
 class SnakeModel {
     constructor(){
@@ -91,19 +78,55 @@ function logKey(e) {
 
     var snake;
     var startFirst = false;
+
+function init() {
+    document.getElementById("snakeboard").style.backgroundColor = BOARD_COLOR;
+    document.getElementById("boardColor").value = BOARD_COLOR;
+    document.getElementById("SnakeColor").value = SNAKE_COLOR;
+    document.getElementById("SnakeHeadColor").value = SNAKE_HEAD_COLOR;
+    document.getElementById("FoodColor").value = FOOD_COLOR;
+    document.getElementById("speed").value = 370;
+    board.style.width = BOARD_WIDTH + "px";
+    board.style.height = BOARD_HEIGHT + "px";
+    buildScores()
+}
+
+function buildScores() {
+    var table = document.getElementById("scores");
+    if(scores.length > 0) {
+        scores.forEach((s) => {
+            let newTr = document.createElement('tr');
+            let newScore = document.createElement('td');
+            newTr.appendChild(newScore)
+            newScore.innerHTML = s;
+            table.appendChild(newTr)
+        })
+    }
+}
+function buildNewScore() {
+    var table = document.getElementById("scores");
+    let newTr = document.createElement('tr');
+    let newScore = document.createElement('td');
+    newTr.appendChild(newScore)
+    newScore.innerHTML = scores[scores.length-1];
+    table.appendChild(newTr)
+
+
+}
+
 function start() {
     if(startFirst) {
         startAgain();
     }
     startFirst = true;
     snake = new SnakeModel();
-    console.log(snake);
     document.getElementById("score").innerHTML = snake.points;
     document.getElementById("level").innerHTML = "Level " + snake.level;
     SNAKE_SPEED = 500 - document.getElementById("speed").value;
     BOARD_COLOR = document.getElementById("boardColor").value;
     document.getElementById("snakeboard").style.backgroundColor = BOARD_COLOR;
     SNAKE_COLOR = document.getElementById("SnakeColor").value;
+    SNAKE_HEAD_COLOR = document.getElementById("SnakeHeadColor").value;
     FOOD_COLOR = document.getElementById("FoodColor").value;
     document.addEventListener('keydown', logKey);
     buildSnake();
@@ -115,7 +138,7 @@ function start() {
 function buildSnake() {
     snake.place.forEach((p) => {
         if(JSON.stringify(snake.place[0]) === JSON.stringify(p) ) { 
-            ctx.fillStyle = "#888888";
+            ctx.fillStyle = SNAKE_HEAD_COLOR;
             ctx.fillRect(p.x, p.y, snake.size.width, snake.size.height)
         } else {
             ctx.fillStyle = SNAKE_COLOR;
@@ -194,10 +217,12 @@ function checkifEntwined() {
 
 function stopGame() {
     clearInterval(repeater);
+    scores.push(parseInt(document.getElementById("score").innerHTML));
+    buildNewScore()
     ctx.textAlign = "center";
     ctx.font = "60px Arial red";
     ctx.fillStyle = "red";    
-    ctx.fillText("GAME OVER",200, 200);   
+    ctx.fillText("GAME OVER",200, 200);
 }
 
 function growSnake() {
