@@ -92,26 +92,14 @@ function init() {
 }
 
 function buildScores() {
-    var table = document.getElementById("scores");
     if(scores.length > 0) {
-        scores.forEach((s) => {
-            let newTr = document.createElement('tr');
-            let newScore = document.createElement('td');
-            newTr.appendChild(newScore)
-            newScore.innerHTML = s;
-            table.appendChild(newTr)
-        })
+        scores.sort((a,b) => {return a-b});
+        var tbody = document.getElementById("scores");
+        tbody.innerHTML = "";
+        for(let i = 0; i < scores.length; i++) {
+           tbody.innerHTML += "<tr><td>" + scores[i] + "</td></tr>"
+        }
     }
-}
-function buildNewScore() {
-    var table = document.getElementById("scores");
-    let newTr = document.createElement('tr');
-    let newScore = document.createElement('td');
-    newTr.appendChild(newScore)
-    newScore.innerHTML = scores[scores.length-1];
-    table.appendChild(newTr)
-
-
 }
 
 function start() {
@@ -217,8 +205,12 @@ function checkifEntwined() {
 
 function stopGame() {
     clearInterval(repeater);
-    scores.push(parseInt(document.getElementById("score").innerHTML));
-    buildNewScore()
+    let newScore = parseInt(document.getElementById("score").innerHTML);
+    if(!scores.includes(newScore)) {
+        scores.push(newScore);
+    }
+    // deleteTable();
+    buildScores();
     ctx.textAlign = "center";
     ctx.font = "60px Arial red";
     ctx.fillStyle = "red";    
