@@ -93,7 +93,6 @@ function init() {
 
 function buildScores() {
     if(scores.length > 0) {
-        scores.sort((a,b) => {return a-b});
         var tbody = document.getElementById("scores");
         tbody.innerHTML = "";
         for(let i = 0; i < scores.length; i++) {
@@ -208,8 +207,11 @@ function stopGame() {
     let newScore = parseInt(document.getElementById("score").innerHTML);
     if(!scores.includes(newScore)) {
         scores.push(newScore);
+        scores.sort((a,b) => {return a-b});
+        if(scores.length > 7) {
+            scores.shift();
+        }
     }
-    // deleteTable();
     buildScores();
     ctx.textAlign = "center";
     ctx.font = "60px Arial red";
