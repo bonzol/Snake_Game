@@ -43,6 +43,14 @@ const food = {
         height: 20
     }
 }
+//the bomb
+const bomb = {
+    place: [],
+    size: {
+        width: 20,
+        height: 20
+    }
+}
 
 // switch case for arrow key log
 function logKey(e) {
@@ -76,7 +84,7 @@ function logKey(e) {
     }
 }
 
-    var snake;
+    var snake = new SnakeModel();
     var startFirst = false;
 
 function init() {
@@ -111,7 +119,6 @@ function start() {
         startAgain();
     }
     startFirst = true;
-    snake = new SnakeModel();
     document.getElementById("score").innerHTML = snake.points;
     document.getElementById("level").innerHTML = "Level " + snake.level;
     SNAKE_SPEED = 500 - document.getElementById("speed").value;
@@ -148,7 +155,7 @@ function move() {
     buildSnake();
     ctx.clearRect(snake.lastPlace.x, snake.lastPlace.y, snake.size.width, snake.size.height);
     checkifEntwined();
-    
+    checkifEatBomb()
 }
 
 function next() {
@@ -192,6 +199,11 @@ function checkifEaten() {
 
 function checkLevel() {
     snake.level = Math.floor(snake.points/100)+1;
+    if(snake.points % 20 == 0) {
+        for(let i = 0; i < snake.level; i++) {
+            buildBomb();
+        }
+    }
     clearInterval(repeater);
     repeater = setInterval(move, snake.speed());
 }
@@ -205,10 +217,18 @@ function checkifEntwined() {
         stopGame();
     }
 }
+function checkifEatBomb() {
+    bomb.place.forEach((p) => {
+        if(JSON.stringify(snake.place[0]) == JSON.stringify(p)) {
+            stopGame();
+        }
+    })
+}
 
 
 function stopGame() {
     clearInterval(repeater);
+    clearTimeout(bombTimeout);
     let newScore = parseInt(document.getElementById("score").innerHTML);
     if(!scores.includes(newScore)) {
         scores.push(newScore);
@@ -246,14 +266,51 @@ function buildFood() {
     ctx.fillRect(food.place.x, food.place.y, food.size.width, food.size.height);
 }
 
+function buildBomb() {    
+    var cordinate = randomBombPlace();
+    bomb.place.push({x: cordinate.x, y: cordinate.y});
+    var imgBomb = new Image();
+    imgBomb.src = "img/Bomb.png";
+    bomb.place.forEach((p) => {
+        ctx.drawImage(imgBomb, p.x, p.y, bomb.size.width, bomb.size.height);
+    })
+    bombTimeout = setTimeout(clearBomb, randomTime());
+}
+
+function clearBomb() {
+    var lastBomb = bomb.place.shift();
+    ctx.fillStyle = BOARD_COLOR;
+    ctx.fillRect(lastBomb.x, lastBomb.y, bomb.size.width, bomb.size.height);
+}
+
+function randomTime() {
+    var ranTime = Math.floor(Math.random()*8000) + snake.level*1000;
+    return ranTime;
+
+}
+
 function randomFoodPlace() {
-    const isDiff = (p) => JSON.stringify(p) != JSON.stringify(cord);
+    const Diff = (p) => JSON.stringify(p) != JSON.stringify(cord);
+    let isDiff = false;
     do {
         var cord = {
             x: (parseInt(Math.random()*20 +1))*20-20,
             y: (parseInt(Math.random()*20 +1))*20-20
         }
-        snake.place.every(isDiff);
+        isDiff = snake.place.every(Diff) && bomb.place.every(Diff);
+    } while(!isDiff);
+    return cord;
+}
+
+function randomBombPlace() {
+    const Diff = (p) => JSON.stringify(p) != JSON.stringify(cord);
+    let isDiff = false;
+    do {
+        var cord = {
+            x: (parseInt(Math.random()*20 +1))*20-20,
+            y: (parseInt(Math.random()*20 +1))*20-20
+        }
+        isDiff = snake.place.every(Diff) && JSON.stringify(food.place) != JSON.stringify(cord);
     } while(!isDiff);
     return cord;
 }
@@ -263,4 +320,7 @@ function startAgain() {
     ctx.fillStyle = BOARD_COLOR;
     ctx.fillRect(0, 0, 400, 400);
     clearInterval(repeater);
+    clearTimeout(bombTimeout);
+    snake = new SnakeModel();
+    bomb.place = [];
 }
