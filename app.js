@@ -9,7 +9,7 @@ var BOARD_COLOR = "#5adaaf";
 var SNAKE_COLOR = "#000000";
 var SNAKE_HEAD_COLOR = "#FFFFFF";
 var FOOD_COLOR = "#FF0000";
-const scores = [];
+var scores = [];
 
 class SnakeModel {
     constructor(){
@@ -88,6 +88,11 @@ function init() {
     document.getElementById("speed").value = 370;
     board.style.width = BOARD_WIDTH + "px";
     board.style.height = BOARD_HEIGHT + "px";
+    if(localStorage.getItem('scores') == undefined) {
+        localStorage.setItem('scores', JSON.stringify(scores));
+    } else {
+        scores = JSON.parse(localStorage.getItem('scores'));
+    }
     buildScores()
 }
 
@@ -212,6 +217,7 @@ function stopGame() {
             scores.shift();
         }
     }
+    localStorage.setItem('scores', JSON.stringify(scores));
     buildScores();
     ctx.textAlign = "center";
     ctx.font = "60px Arial red";
