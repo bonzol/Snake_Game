@@ -54,7 +54,11 @@ const bomb = {
 
 // switch case for arrow key log
 function logKey(e) {
-    switch(e.key) {
+    keyDir(e.key);
+}
+
+function keyDir(dir) {
+    switch(dir) {
         case 'ArrowUp':
             if(snake.direction === 'down') {
                 break;
@@ -82,6 +86,47 @@ function logKey(e) {
         default:
             return;
     }
+}
+
+var lastX;
+var currX = 0;
+var lastY;
+var currY = 0;
+var dir = 'ArrowRight';
+function logKeyMove(e) {
+    if(e.touches) {
+        lastX = currX;
+        currX = e.touches[0].pageX;
+        lastY = currY;
+        currY = e.touches[0].pageY;
+        diffX = Math.abs(currX - lastX);
+        diffY = Math.abs(currY - lastY);
+        if(diffX > diffY) {
+            if(currX - lastX > 0) {
+                dir = 'ArrowRight';
+                console.log("rightttttttt");
+            } else {
+                dir = 'ArrowLeft';
+                console.log("leftttttttt");
+            }
+        } else {
+            if(currY - lastY > 0) {
+                dir = 'ArrowDown';
+                console.log("downnnnnn");
+            } else {
+                dir = 'ArrowUp';
+                console.log("upppppppp");
+            }
+        }
+        e.preventDefault();
+    }
+    keyDir(dir);
+}
+
+function is_touch_enabled() {
+    return ( 'ontouchstart' in window ) ||
+           ( navigator.maxTouchPoints > 0 ) ||
+           ( navigator.msMaxTouchPoints > 0 );
 }
 
     var snake = new SnakeModel();
@@ -130,7 +175,14 @@ function start() {
     SNAKE_COLOR = document.getElementById("SnakeColor").value;
     SNAKE_HEAD_COLOR = document.getElementById("SnakeHeadColor").value;
     FOOD_COLOR = document.getElementById("FoodColor").value;
-    document.addEventListener('keydown', logKey);
+    if( is_touch_enabled() ) {
+        board.addEventListener('touchstart', logKeyMove);
+        board.addEventListener('touchmove', logKeyMove);
+    }
+    else {
+        console.log("no touch");
+        document.addEventListener('keydown', logKey);
+    }
     buildSnake();
     repeater = setInterval(move, snake.speed());
     buildFood();
