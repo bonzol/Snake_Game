@@ -5,11 +5,9 @@ body {
     align-items: center;
     justify-content: center;
     margin: 0;
-    background-color: #9e9b9b;
+    /* background-color: #9e9b9b; */
 }
-/* #snakeboard {
-    border: 5px solid black;
-} */
+
 .containerCol {
     display: flex;
     flex-direction: column;

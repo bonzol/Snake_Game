@@ -97,6 +97,7 @@ function init() {
     board.style.width = BOARD_WIDTH + "px";
     board.style.height = BOARD_HEIGHT + "px";
     board.style.border = "2px solid black";
+    document.body.style.backgroundColor = BOARD_COLOR;
     if(localStorage.getItem('scores') == undefined) {
         localStorage.setItem('scores', JSON.stringify(scores));
     } else {
@@ -116,15 +117,15 @@ function buildScores() {
 }
 
 function start() {
+    BOARD_COLOR = document.getElementById("boardColor").value;
     if(startFirst) {
         startAgain();
     }
     startFirst = true;
+    document.getElementById("snakeboard").style.backgroundColor = BOARD_COLOR;
     document.getElementById("score").innerHTML = snake.points;
     document.getElementById("level").innerHTML = "Level " + snake.level;
     SNAKE_SPEED = 500 - document.getElementById("speed").value;
-    BOARD_COLOR = document.getElementById("boardColor").value;
-    document.getElementById("snakeboard").style.backgroundColor = BOARD_COLOR;
     SNAKE_COLOR = document.getElementById("SnakeColor").value;
     SNAKE_HEAD_COLOR = document.getElementById("SnakeHeadColor").value;
     FOOD_COLOR = document.getElementById("FoodColor").value;
@@ -240,7 +241,7 @@ function stopGame() {
     if(!scores.includes(newScore)) {
         scores.push(newScore);
         scores.sort((a,b) => {return a-b});
-        if(scores.length > 7) {
+        if(scores.length > 10) {
             scores.shift();
         }
     }
