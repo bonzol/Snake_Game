@@ -15,39 +15,18 @@ body {
     width: 50%;
     
 }
+p {
+    margin-top: 1vh;
 
+}
 .containerRow {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: row;
-    width: 100%;
-    
-    
-}
-.containerInput {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
-.containerScores {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
+    width: 135%;
 }
 input {
-    width: 100%;
-}
-.inputs {
-    text-align: center;
-    width: 40%;
+    width: 130%;
 }
 
 #snakeboard {
@@ -70,15 +49,7 @@ input {
 #score, #points {
     margin: 1%;
 }
-h2 {
-    margin: 1%;
-}
+
 #highScore {
     margin: 0;
-}
-#youAre {
-    text-align: center;
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
 }

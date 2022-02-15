@@ -10,25 +10,22 @@
 </head>
 <body onload="init()">
     <div class="containerCol">
-        <p>You Are:</p>
+        <br>
         <input id="youAre" type="range" list="youAre" min="10" max="100">
-        <datalist id="youAre">
-        <option value="0" label="Looser"></option>
-        <option value="10"></option>
-        <option value="20" label="Amatuer"></option>
-        <option value="30"></option>
-        <option value="40"></option>
-        <option value="50" label="OK"></option>
-        <option value="60"></option>
-        <option value="70" label="Fearless"></option>
-        <option value="80"></option>
-        <option value="90"></option>
-        <option value="100" label="God"></option>
-</datalist>
+            <div class="containerRow">
+                <p>Looser</p>
+                <p>Amatuer</p>
+                <p>OK</p>
+                <p>Fearless</p>
+                <p>God</p>
+            </div>
         <p id="score">0</p>
     </div>
             <div>
-                <canvas id="snakeboard" width="400" height="400"></canvas>
+                <canvas id="snakeboard" width="400" height="400">
+                    <button class="btn" onclick="start()">Start</button>
+                </canvas>
+                
                 <p id="highScore"></p>
             </div>
            
