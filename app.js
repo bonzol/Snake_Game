@@ -297,7 +297,7 @@ function clearBomb() {
     var lastBomb = bomb.place.shift();
     fillBomb();
     ctx.drawImage(imgBombEx, lastBomb.x, lastBomb.y, bomb.size.width, bomb.size.height);
-    setTimeout(fillBomb, 180);
+    setTimeout(fillBomb, 165);
     function fillBomb() {
         ctx.fillStyle = BOARD_COLOR;
         ctx.fillRect(lastBomb.x, lastBomb.y, bomb.size.width, bomb.size.height);
