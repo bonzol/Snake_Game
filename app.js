@@ -104,18 +104,14 @@ function logKeyMove(e) {
         if(diffX > diffY) {
             if(currX - lastX > 0) {
                 dir = 'ArrowRight';
-                console.log("rightttttttt");
             } else {
                 dir = 'ArrowLeft';
-                console.log("leftttttttt");
             }
         } else {
             if(currY - lastY > 0) {
                 dir = 'ArrowDown';
-                console.log("downnnnnn");
             } else {
                 dir = 'ArrowUp';
-                console.log("upppppppp");
             }
         }
         e.preventDefault();
@@ -180,7 +176,6 @@ function start() {
         board.addEventListener('touchmove', logKeyMove);
     }
     else {
-        console.log("no touch");
         document.addEventListener('keydown', logKey);
     }
     buildSnake();
