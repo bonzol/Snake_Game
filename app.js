@@ -232,8 +232,8 @@ function checkifEatBomb() {
 
 function stopGame() {
     clearInterval(repeater);
-    if(typeof bombTimeout !== 'undefined') {
-        clearTimeout(bombTimeout);
+    if(typeof clearBombTimeout !== 'undefined') {
+        clearTimeout(clearBombTimeout);
     }    
     let newScore = parseInt(document.getElementById("score").innerHTML);
     if(!scores.includes(newScore)) {
@@ -280,13 +280,20 @@ function buildBomb() {
     bomb.place.forEach((p) => {
         ctx.drawImage(imgBomb, p.x, p.y, bomb.size.width, bomb.size.height);
     })
-    bombTimeout = setTimeout(clearBomb, randomTime());
+    clearBombTimeout = setTimeout(clearBomb, randomTime());
 }
 
 function clearBomb() {
+    var imgBombEx = new Image();
+    imgBombEx.src = "img/BombEx.png";
     var lastBomb = bomb.place.shift();
-    ctx.fillStyle = BOARD_COLOR;
-    ctx.fillRect(lastBomb.x, lastBomb.y, bomb.size.width, bomb.size.height);
+    fillBomb();
+    ctx.drawImage(imgBombEx, lastBomb.x, lastBomb.y, bomb.size.width, bomb.size.height);
+    setTimeout(fillBomb, 180);
+    function fillBomb() {
+        ctx.fillStyle = BOARD_COLOR;
+        ctx.fillRect(lastBomb.x, lastBomb.y, bomb.size.width, bomb.size.height);
+    }
 }
 
 function randomTime() {
@@ -326,8 +333,8 @@ function startAgain() {
     ctx.fillStyle = BOARD_COLOR;
     ctx.fillRect(0, 0, 400, 400);
     clearInterval(repeater);
-    if(typeof bombTimeout !== 'undefined') {
-        clearTimeout(bombTimeout);
+    if(typeof clearBombTimeout !== 'undefined') {
+        clearTimeout(clearBombTimeout);
     }
     snake = new SnakeModel();
     bomb.place = [];
