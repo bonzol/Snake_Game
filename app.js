@@ -9,6 +9,7 @@ var SNAKE_COLOR = "#000000";
 var SNAKE_HEAD_COLOR = "#FFFFFF";
 var userLevel = 50;
 var highScore;
+var timeouts = [];
 
 var foodImg1 = new Image();
 foodImg1.src = "img/food1.png"
@@ -279,8 +280,11 @@ function checkifEatBomb() {
 function stopGame() {
     clearInterval(repeater);
     if(typeof clearBombTimeout !== 'undefined') {
-        clearTimeout(clearBombTimeout);
-    }    
+        for (var i = 0; i < timeouts.length; i++) {
+            clearTimeout(timeouts[i]);
+        }
+        timeouts = [];
+    }
     let newScore = parseInt(document.getElementById("score").innerHTML);
     if(newScore > highScore) {
         highScore = newScore;
@@ -321,6 +325,7 @@ function buildBomb() {
         ctx.drawImage(imgBomb, p.x, p.y, bomb.size.width, bomb.size.height);
     })
     clearBombTimeout = setTimeout(clearBomb, randomTime());
+    timeouts.push(clearBombTimeout);
 }
 
 function clearBomb() {
@@ -372,7 +377,10 @@ function startAgain() {
     ctx.fillRect(0, 0, 400, 400);
     clearInterval(repeater);
     if(typeof clearBombTimeout !== 'undefined') {
-        clearTimeout(clearBombTimeout);
+        for (var i = 0; i < timeouts.length; i++) {
+            clearTimeout(timeouts[i]);
+        }
+        timeouts = [];
     }
     snake = new SnakeModel();
     document.getElementById("score").innerHTML = snake.points;
