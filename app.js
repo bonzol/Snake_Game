@@ -118,6 +118,7 @@ function buildScores() {
 
 function start() {
     BOARD_COLOR = document.getElementById("boardColor").value;
+    document.body.style.backgroundColor = BOARD_COLOR;
     if(startFirst) {
         startAgain();
     }
@@ -269,9 +270,12 @@ function buildFood() {
     var cordinate = randomFoodPlace();
     food.place.x = cordinate.x;
     food.place.y = cordinate.y;
-    ctx.fillStyle = FOOD_COLOR;
-    ctx.strokestyle = "#000000";
-    ctx.fillRect(food.place.x, food.place.y, food.size.width, food.size.height);
+    var foodImg = new Image();
+    randomNum = Math.floor(Math.random() * 5) +1;
+    foodImg.src = "img/food" + randomNum + ".png"
+    foodImg.addEventListener('load', function() {
+        ctx.drawImage(foodImg, food.place.x, food.place.y, food.size.width, food.size.height);
+    })
 }
 
 function buildBomb() {    
@@ -280,7 +284,9 @@ function buildBomb() {
     var imgBomb = new Image();
     imgBomb.src = "img/Bomb.png";
     bomb.place.forEach((p) => {
-        ctx.drawImage(imgBomb, p.x, p.y, bomb.size.width, bomb.size.height);
+        imgBomb.addEventListener('load', function() {
+            ctx.drawImage(imgBomb, p.x, p.y, bomb.size.width, bomb.size.height);
+        })
     })
     clearBombTimeout = setTimeout(clearBomb, randomTime());
 }
