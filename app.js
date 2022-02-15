@@ -8,7 +8,6 @@ var SNAKE_SPEED = 160;
 var BOARD_COLOR = "#C5DDD6";
 var SNAKE_COLOR = "#000000";
 var SNAKE_HEAD_COLOR = "#FFFFFF";
-var FOOD_COLOR = "#FF0000";
 var scores = [];
 
 class SnakeModel {
@@ -129,12 +128,6 @@ function is_touch_enabled() {
     var startFirst = false;
 
 function init() {
-    document.getElementById("snakeboard").style.backgroundColor = BOARD_COLOR;
-    document.getElementById("boardColor").value = BOARD_COLOR;
-    document.getElementById("SnakeColor").value = SNAKE_COLOR;
-    document.getElementById("SnakeHeadColor").value = SNAKE_HEAD_COLOR;
-    document.getElementById("FoodColor").value = FOOD_COLOR;
-    document.getElementById("speed").value = 370;
     board.style.width = BOARD_WIDTH + "px";
     board.style.height = BOARD_HEIGHT + "px";
     board.style.border = "2px solid black";
@@ -158,19 +151,10 @@ function buildScores() {
 }
 
 function start() {
-    BOARD_COLOR = document.getElementById("boardColor").value;
-    document.body.style.backgroundColor = BOARD_COLOR;
     if(startFirst) {
         startAgain();
     }
     startFirst = true;
-    document.getElementById("snakeboard").style.backgroundColor = BOARD_COLOR;
-    document.getElementById("score").innerHTML = snake.points;
-    document.getElementById("level").innerHTML = "Level " + snake.level;
-    SNAKE_SPEED = 500 - document.getElementById("speed").value;
-    SNAKE_COLOR = document.getElementById("SnakeColor").value;
-    SNAKE_HEAD_COLOR = document.getElementById("SnakeHeadColor").value;
-    FOOD_COLOR = document.getElementById("FoodColor").value;
     if( is_touch_enabled() ) {
         board.addEventListener('touchstart', logKeyMove);
         board.addEventListener('touchmove', logKeyMove);
