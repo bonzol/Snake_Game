@@ -5,7 +5,7 @@ var BOARD_HEIGHT = 400;
 var SNAKE_WIDTH = Math.sqrt(BOARD_WIDTH);
 var SNAKE_HEIGHT = Math.sqrt(BOARD_HEIGHT);
 var SNAKE_SPEED = 160;
-var BOARD_COLOR = "#5adaaf";
+var BOARD_COLOR = "#9e9b9b";
 var SNAKE_COLOR = "#000000";
 var SNAKE_HEAD_COLOR = "#FFFFFF";
 var FOOD_COLOR = "#FF0000";
@@ -96,6 +96,7 @@ function init() {
     document.getElementById("speed").value = 370;
     board.style.width = BOARD_WIDTH + "px";
     board.style.height = BOARD_HEIGHT + "px";
+    board.style.border = "2px solid black";
     if(localStorage.getItem('scores') == undefined) {
         localStorage.setItem('scores', JSON.stringify(scores));
     } else {
