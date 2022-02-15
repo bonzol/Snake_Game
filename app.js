@@ -4,10 +4,11 @@ var BOARD_WIDTH = 400;
 var BOARD_HEIGHT = 400;
 var SNAKE_WIDTH = Math.sqrt(BOARD_WIDTH);
 var SNAKE_HEIGHT = Math.sqrt(BOARD_HEIGHT);
-var SNAKE_SPEED = 100;
 var BOARD_COLOR = "#C5DDD6";
 var SNAKE_COLOR = "#000000";
 var SNAKE_HEAD_COLOR = "#FFFFFF";
+var userLevel = 50;
+// var SNAKE_SPEED = userLevel+20;
 var highScore;
 
 class SnakeModel {
@@ -24,7 +25,7 @@ class SnakeModel {
         };
         this.direction = 'right'
         this.speed = function() {
-            return SNAKE_SPEED - snake.level*10;
+            return 170 - userLevel - snake.level*10;
         };
         this.level = 1;
         this.points = 0;
@@ -144,6 +145,7 @@ function init() {
 
 
 function start() {
+    userLevel = document.getElementById("youAre").value;
     if(startFirst) {
         startAgain();
     }
@@ -222,14 +224,15 @@ function checkifEaten() {
         snake.points += 10;
         checkLevel();
         document.getElementById("score").innerHTML = snake.points;
-        document.getElementById("level").innerHTML = "Level " + snake.level;
         growSnake();
         buildFood();
     }
 }
 
 function checkLevel() {
-    snake.level = Math.floor(snake.points/100)+1;
+    console.log(userLevel);
+    snake.level = Math.floor(snake.points/(120-userLevel))+1;
+    console.log(snake.level);
     if(snake.points % 20 == 0) {
         for(let i = 0; i < snake.level; i++) {
             buildBomb();
@@ -309,9 +312,9 @@ function buildBomb() {
     var imgBomb = new Image();
     imgBomb.src = "img/Bomb.png";
     bomb.place.forEach((p) => {
-        imgBomb.addEventListener('load', function() {
+    imgBomb.addEventListener('load', function() {
             ctx.drawImage(imgBomb, p.x, p.y, bomb.size.width, bomb.size.height);
-        })
+    })
     })
     clearBombTimeout = setTimeout(clearBomb, randomTime());
 }
@@ -321,7 +324,9 @@ function clearBomb() {
     imgBombEx.src = "img/BombEx.png";
     var lastBomb = bomb.place.shift();
     fillBomb();
-    ctx.drawImage(imgBombEx, lastBomb.x, lastBomb.y, bomb.size.width, bomb.size.height);
+    imgBombEx.addEventListener('load', function() {
+        ctx.drawImage(imgBombEx, lastBomb.x, lastBomb.y, bomb.size.width, bomb.size.height);
+    })
     setTimeout(fillBomb, 165);
     function fillBomb() {
         ctx.fillStyle = BOARD_COLOR;
@@ -371,6 +376,6 @@ function startAgain() {
     }
     snake = new SnakeModel();
     document.getElementById("score").innerHTML = snake.points;
-    document.getElementById("level").innerHTML = "Level " + snake.level;
+    // document.getElementById("level").innerHTML = "Level " + snake.level;
     bomb.place = [];
 }
