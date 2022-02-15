@@ -138,10 +138,14 @@ function buildSnake() {
     snake.place.forEach((p) => {
         if(JSON.stringify(snake.place[0]) === JSON.stringify(p) ) { 
             ctx.fillStyle = SNAKE_HEAD_COLOR;
-            ctx.fillRect(p.x, p.y, snake.size.width, snake.size.height)
+            ctx.strokeStyle = BOARD_COLOR;
+            ctx.fillRect(p.x, p.y, snake.size.width, snake.size.height);
+            ctx.strokeRect(p.x, p.y, snake.size.width, snake.size.height)
         } else {
             ctx.fillStyle = SNAKE_COLOR;
+            ctx.strokeStyle = BOARD_COLOR;
             ctx.fillRect(p.x, p.y, snake.size.width, snake.size.height)
+            ctx.strokeRect(p.x, p.y, snake.size.width, snake.size.height)
         }
     })    
 }
@@ -228,7 +232,9 @@ function checkifEatBomb() {
 
 function stopGame() {
     clearInterval(repeater);
-    clearTimeout(bombTimeout);
+    if(typeof bombTimeout !== 'undefined') {
+        clearTimeout(bombTimeout);
+    }    
     let newScore = parseInt(document.getElementById("score").innerHTML);
     if(!scores.includes(newScore)) {
         scores.push(newScore);
@@ -320,7 +326,9 @@ function startAgain() {
     ctx.fillStyle = BOARD_COLOR;
     ctx.fillRect(0, 0, 400, 400);
     clearInterval(repeater);
-    clearTimeout(bombTimeout);
+    if(typeof bombTimeout !== 'undefined') {
+        clearTimeout(bombTimeout);
+    }
     snake = new SnakeModel();
     bomb.place = [];
 }
