@@ -4,7 +4,7 @@ var BOARD_WIDTH = 400;
 var BOARD_HEIGHT = 400;
 var SNAKE_WIDTH = Math.sqrt(BOARD_WIDTH);
 var SNAKE_HEIGHT = Math.sqrt(BOARD_HEIGHT);
-var SNAKE_SPEED = 160;
+var SNAKE_SPEED = 100;
 var BOARD_COLOR = "#C5DDD6";
 var SNAKE_COLOR = "#000000";
 var SNAKE_HEAD_COLOR = "#FFFFFF";
@@ -139,8 +139,6 @@ function init() {
         highScore = localStorage.getItem('highScore');
     }
     document.getElementById("highScore").innerText = "High Score: " + highScore; 
-    console.log(highScore);
-    console.log(localStorage.getItem('highScore'));
 }
 
 
@@ -253,7 +251,12 @@ function checkifEntwined() {
 function checkifEatBomb() {
     bomb.place.forEach((p) => {
         if(JSON.stringify(snake.place[0]) == JSON.stringify(p)) {
-            stopGame();
+            var endBomb = new Image();
+            endBomb.src = "img/explosion.png";
+            endBomb.addEventListener('load', function() {
+                ctx.drawImage(endBomb, 0, 0, 400, 400);
+                stopGame();
+            })            
         }
     })
 }
@@ -271,9 +274,9 @@ function stopGame() {
     }
     document.getElementById("highScore").innerText = "High Score: " + highScore; 
     ctx.textAlign = "center";
-    ctx.font = "60px Arial red";
-    ctx.fillStyle = "red";    
-    ctx.fillText("GAME OVER",200, 200);
+    ctx.font = "60px Verdana";
+    ctx.fillStyle = "white";    
+    ctx.fillText("GAME OVER",200, 220);
 }
 
 function growSnake() {
@@ -337,8 +340,8 @@ function randomFoodPlace() {
     let isDiff = false;
     do {
         var cord = {
-            x: (parseInt(Math.random()*20 +1))*20-20,
-            y: (parseInt(Math.random()*20 +1))*20-20
+            x: (parseInt(Math.random()*20))*20,
+            y: (parseInt(Math.random()*20))*20
         }
         isDiff = snake.place.every(Diff) && bomb.place.every(Diff);
     } while(!isDiff);
@@ -350,8 +353,8 @@ function randomBombPlace() {
     let isDiff = false;
     do {
         var cord = {
-            x: (parseInt(Math.random()*20 +1))*20-20,
-            y: (parseInt(Math.random()*20 +1))*20-20
+            x: (parseInt(Math.random()*20))*20,
+            y: (parseInt(Math.random()*20))*20
         }
         isDiff = snake.place.every(Diff) && JSON.stringify(food.place) != JSON.stringify(cord);
     } while(!isDiff);
