@@ -132,7 +132,7 @@ function init() {
     board.style.height = BOARD_HEIGHT + "px";
     board.style.border = "2px solid black";
     document.body.style.backgroundColor = BOARD_COLOR;
-    if(localStorage.getItem('highScore') == 'undefined') {
+    if(localStorage.getItem('highScore') == null) {
         highScore = 0;
         localStorage.setItem('highScore', highScore);
     } else {
@@ -367,5 +367,7 @@ function startAgain() {
         clearTimeout(clearBombTimeout);
     }
     snake = new SnakeModel();
+    document.getElementById("score").innerHTML = snake.points;
+    document.getElementById("level").innerHTML = "Level " + snake.level;
     bomb.place = [];
 }
