@@ -8,7 +8,7 @@ var SNAKE_SPEED = 160;
 var BOARD_COLOR = "#C5DDD6";
 var SNAKE_COLOR = "#000000";
 var SNAKE_HEAD_COLOR = "#FFFFFF";
-var scores = [];
+var highScore;
 
 class SnakeModel {
     constructor(){
@@ -132,23 +132,18 @@ function init() {
     board.style.height = BOARD_HEIGHT + "px";
     board.style.border = "2px solid black";
     document.body.style.backgroundColor = BOARD_COLOR;
-    if(localStorage.getItem('scores') == undefined) {
-        localStorage.setItem('scores', JSON.stringify(scores));
+    if(localStorage.getItem('highScore') == 'undefined') {
+        highScore = 0;
+        localStorage.setItem('highScore', highScore);
     } else {
-        scores = JSON.parse(localStorage.getItem('scores'));
+        highScore = localStorage.getItem('highScore');
     }
-    buildScores()
+    document.getElementById("highScore").innerText = "High Score: " + highScore; 
+    console.log(highScore);
+    console.log(localStorage.getItem('highScore'));
 }
 
-function buildScores() {
-    if(scores.length > 0) {
-        var tbody = document.getElementById("scores");
-        tbody.innerHTML = "";
-        for(let i = 0; i < scores.length; i++) {
-           tbody.innerHTML += "<tr><td>" + scores[i] + "</td></tr>"
-        }
-    }
-}
+
 
 function start() {
     if(startFirst) {
@@ -270,15 +265,11 @@ function stopGame() {
         clearTimeout(clearBombTimeout);
     }    
     let newScore = parseInt(document.getElementById("score").innerHTML);
-    if(!scores.includes(newScore)) {
-        scores.push(newScore);
-        scores.sort((a,b) => {return a-b});
-        if(scores.length > 10) {
-            scores.shift();
-        }
+    if(newScore > highScore) {
+        highScore = newScore;
+        localStorage.setItem('highScore', highScore);
     }
-    localStorage.setItem('scores', JSON.stringify(scores));
-    buildScores();
+    document.getElementById("highScore").innerText = "High Score: " + highScore; 
     ctx.textAlign = "center";
     ctx.font = "60px Arial red";
     ctx.fillStyle = "red";    
