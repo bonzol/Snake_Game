@@ -119,13 +119,15 @@ function logKeyMove(e) {
         currY = e.touches[0].pageY;
         diffX = Math.abs(currX - lastX);
         diffY = Math.abs(currY - lastY);
-        if(diffX > diffY) {
+        console.log("diffx = " + diffX);
+        console.log("diffy = " + diffY);
+        if(diffX > diffY && diffX > 0.5) {
             if(currX - lastX > 0) {
                 dir = 'ArrowRight';
             } else {
                 dir = 'ArrowLeft';
             }
-        } else {
+        } else if (diffX < diffY && diffY > 0.5) {
             if(currY - lastY > 0) {
                 dir = 'ArrowDown';
             } else {
