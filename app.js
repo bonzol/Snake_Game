@@ -119,8 +119,7 @@ function logKeyMove(e) {
         currY = e.touches[0].pageY;
         diffX = Math.abs(currX - lastX);
         diffY = Math.abs(currY - lastY);
-        console.log("diffx = " + diffX);
-        console.log("diffy = " + diffY);
+
         if(diffX > diffY && diffX > 0.5) {
             if(currX - lastX > 0) {
                 dir = 'ArrowRight';
@@ -332,7 +331,7 @@ function buildBomb() {
 function clearBomb() {
     var lastBomb = bomb.place.shift();
     fillBomb();
-        ctx.drawImage(imgBombEx, lastBomb.x, lastBomb.y, bomb.size.width, bomb.size.height);
+    ctx.drawImage(imgBombEx, lastBomb.x, lastBomb.y, bomb.size.width, bomb.size.height);
     setTimeout(fillBomb, 165);
     function fillBomb() {
         ctx.fillStyle = BOARD_COLOR;
