@@ -251,7 +251,8 @@ function checkLevel() {
     snake.level = Math.floor(snake.points/(120-userLevel))+1;
     if(snake.points % 20 == 0) {
         for(let i = 0; i < snake.level; i++) {
-            buildBomb();
+            drawBomb = setTimeout(buildBomb, randomTimeBomb());
+            timeouts.push(drawBomb);
         }
     }
     clearInterval(repeater);
@@ -321,9 +322,7 @@ function buildFood() {
 function buildBomb() {    
     var cordinate = randomBombPlace();
     bomb.place.push({x: cordinate.x, y: cordinate.y});
-    bomb.place.forEach((p) => {
-        ctx.drawImage(imgBomb, p.x, p.y, bomb.size.width, bomb.size.height);
-    })
+    ctx.drawImage(imgBomb, cordinate.x, cordinate.y, bomb.size.width, bomb.size.height);
     clearBombTimeout = setTimeout(clearBomb, randomTime());
     timeouts.push(clearBombTimeout);
 }
@@ -342,7 +341,11 @@ function clearBomb() {
 function randomTime() {
     var ranTime = Math.floor(Math.random()*8000) + snake.level*1000;
     return ranTime;
+}
 
+function randomTimeBomb() {
+    var ranTime = Math.floor(Math.random()*3000);
+    return ranTime;
 }
 
 function randomFoodPlace() {
