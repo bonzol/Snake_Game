@@ -364,16 +364,30 @@ function randomFoodPlace() {
 function randomBombPlace() {
     const Diff = (p) => JSON.stringify(p) != JSON.stringify(cord);
     let isDiff = false;
+    let nextHead = getNextHead();
     do {
         var cord = {
             x: (parseInt(Math.random()*20))*20,
             y: (parseInt(Math.random()*20))*20
         }
-        isDiff = snake.place.every(Diff) && JSON.stringify(food.place) != JSON.stringify(cord);
+        isDiff = snake.place.every(Diff) && JSON.stringify(food.place) != JSON.stringify(cord) && JSON.stringify(cord) != JSON.stringify(nextHead[0]);
     } while(!isDiff);
     return cord;
 }
 
+function getNextHead() {
+    let head = [{x: snake.place[0].x, y: snake.place[0].y}];
+    if(snake.direction === 'up') {
+        head[0].y -= 20;
+    } else if(snake.direction === 'down') {
+        head[0].y += 20;
+    } else if(snake.direction === 'right') {
+        head[0].x += 20;
+    } else if(snake.direction === 'left') {
+        head[0].x -= 20;
+    } 
+    return head;
+}
 
 function startAgain() {
     ctx.fillStyle = BOARD_COLOR;
