@@ -106,33 +106,47 @@ function keyDir(dir) {
     }
 }
 
-var lastX;
-var currX = 0;
-var lastY;
-var currY = 0;
+var lastX = NaN;
+var currX = NaN;
+var lastY = NaN;
+var currY = NaN;
 var dir = 'ArrowRight';
 function logKeyMove(e) {
     if(e.touches) {
-        lastX = currX;
-        currX = e.touches[0].pageX;
-        lastY = currY;
-        currY = e.touches[0].pageY;
+        if(e.type === 'touchstart') {
+            currX = e.touches[0].pageX;
+            currY = e.touches[0].pageY;
+            return;
+        } else {
+            lastX = currX;
+            lastY = currY;
+            currX = e.touches[0].pageX;
+            currY = e.touches[0].pageY;
+        }
         diffX = Math.abs(currX - lastX);
         diffY = Math.abs(currY - lastY);
-
-        if(diffX > diffY && diffX > 0.5) {
+        
+        if(diffX > 10) {
             if(currX - lastX > 0) {
                 dir = 'ArrowRight';
             } else {
                 dir = 'ArrowLeft';
             }
-        } else if (diffX < diffY && diffY > 0.5) {
+            lastX = NaN;
+            currX = NaN;
+            lastY = NaN;
+            currY = NaN;
+        } else if(diffY > 10) {
             if(currY - lastY > 0) {
                 dir = 'ArrowDown';
             } else {
                 dir = 'ArrowUp';
             }
-        }
+            lastX = NaN;
+            currX = NaN;
+            lastY = NaN;
+            currY = NaN;
+        } 
         e.preventDefault();
     }
     keyDir(dir);
@@ -168,6 +182,7 @@ function start() {
     }
     startFirst = true;
     if( is_touch_enabled() ) {
+        board.addEventListener('touchstart', logKeyMove);
         board.addEventListener('touchmove', logKeyMove);
     }
     else {
