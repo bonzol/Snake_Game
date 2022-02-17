@@ -170,8 +170,6 @@ function keyDir(dir) {
     }
 }
 
-
-
 function is_touch_enabled() {
     return ( 'ontouchstart' in window ) ||
            ( navigator.maxTouchPoints > 0 ) ||
@@ -193,6 +191,13 @@ function init() {
         highScore = localStorage.getItem('highScore');
     }
     document.getElementById("highScore").innerText = "High Score: " + highScore; 
+    if( is_touch_enabled() ) {
+        board.addEventListener('touchstart', logKeyMove);
+        board.addEventListener('touchmove', logKeyMove);        
+    }
+    else {
+        document.addEventListener('keydown', logKey);
+    }
 }
 
 function initSound() {
@@ -211,19 +216,13 @@ function initSound() {
 }
 
 function start() {
-    initSound();
     userLevel = document.getElementById("youAre").value;
     if(startFirst) {
         startAgain();
+    } else {
+        initSound();
     }
     startFirst = true;
-    if( is_touch_enabled() ) {
-        board.addEventListener('touchstart', logKeyMove);
-        board.addEventListener('touchmove', logKeyMove);
-    }
-    else {
-        document.addEventListener('keydown', logKey);
-    }
     buildSnake();
     repeater = setInterval(move, snake.speed());
     buildFood();
@@ -272,7 +271,6 @@ function next() {
     } else if(snake.direction === 'left') {
         snake.place[0].x -= 20;
     } 
-    // dirchange = true;
 }
 
 function checkOutOfBounds() {
@@ -289,8 +287,8 @@ function checkOutOfBounds() {
 
 function checkifEaten() {
     if(JSON.stringify(snake.place[0]) == JSON.stringify(food.place)) {
-        snake.points += 10;
         biteSound.play();
+        snake.points += 10;
         checkLevel();
         document.getElementById("score").innerHTML = snake.points;
         growSnake();

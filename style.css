@@ -4,7 +4,6 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 10%;
 }
 
 .containerCol {
@@ -26,7 +25,7 @@ p {
     flex-direction: row;
     width: 150%;
     margin-left: -7%;
-    margin-bottom: 10%;
+    margin-bottom: 3%;
 }
 input {
     width: 135%;
@@ -35,18 +34,6 @@ input {
 
 #snakeboard {
     border: 1px solid black;
-    background: repeating-linear-gradient(
-        to right,
-        #C5DDD6 0px,
-        #C5DDD6 20px,
-        #90CAF9 20px,
-        #90CAF9 40px,
-        to bottom,
-        #C5DDD6 0px,
-        #C5DDD6 20px,
-        #90CAF9 20px,
-        #90CAF9 40px 
-      );
 }
 
 .btn {
@@ -58,6 +45,18 @@ input {
     font-family: LazenbyCompSmooth;
 
 }
+.btnkeys {
+    padding: 15px;
+    width: 15vw;
+    border-radius: 20%;
+    background-color: rgba(232, 234, 236, 0.685);
+    color: #000000; 
+    margin: 5px;
+    font-family: LazenbyCompSmooth;
+    font-size: 70%;
+}
+
+
 
 .btn:hover {
     background-color: black;
@@ -71,6 +70,33 @@ input {
 #highScore {
     margin: 0;
 }
+
+#outkeys {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5%;
+}
+
+#keys {
+  margin-top: 5px;
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+
+}
+.up, .left {
+  width: 40vw;
+}
+.up {
+  display: flex;
+  justify-content: center;
+}
+.left {
+  display: flex;
+  justify-content: space-between;
+}
+
 @media only screen and (min-width: 900px) {
     input {
         width: 100%;
@@ -89,6 +115,9 @@ input {
     }
     #score {
       margin-top: -10px;
+    }
+    #keys {
+      display: none;
     }
 }
 
