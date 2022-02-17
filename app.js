@@ -306,8 +306,8 @@ function stopGame() {
     }
     document.getElementById("highScore").innerText = "High Score: " + highScore; 
     ctx.textAlign = "center";
-    ctx.font = "60px Verdana";
-    ctx.fillStyle = "white";    
+    ctx.font = "60px LazenbyCompSmooth";
+    ctx.fillStyle = "black";    
     ctx.fillText("GAME OVER",200, 220);
 }
 
