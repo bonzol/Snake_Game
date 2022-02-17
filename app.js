@@ -29,6 +29,8 @@ imgBombEx.src = "img/BombEx.png";
 var endBomb = new Image();
 endBomb.src = "img/explosion.png";
 
+var biteSound = new Audio("sound/bite.mp3")
+
 class SnakeModel {
     constructor(){
         this.place = [
@@ -262,6 +264,7 @@ function checkOutOfBounds() {
 function checkifEaten() {
     if(JSON.stringify(snake.place[0]) == JSON.stringify(food.place)) {
         snake.points += 10;
+        biteSound.play();
         checkLevel();
         document.getElementById("score").innerHTML = snake.points;
         growSnake();
@@ -293,7 +296,7 @@ function checkifEntwined() {
 function checkifEatBomb() {
     bomb.place.forEach((p) => {
         if(JSON.stringify(snake.place[0]) == JSON.stringify(p)) {
-            ctx.drawImage(endBomb, 0, 0, 400, 400);
+            ctx.drawImage(endBomb, -50, -50, 500, 500);
             stopGame();
         }
     })
