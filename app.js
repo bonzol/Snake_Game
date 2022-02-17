@@ -175,6 +175,7 @@ function init() {
     document.getElementById("highScore").innerText = "High Score: " + highScore; 
 }
 
+
 function start() {
     userLevel = document.getElementById("youAre").value;
     if(startFirst) {

@@ -35,6 +35,18 @@ input {
 
 #snakeboard {
     border: 1px solid black;
+    background: repeating-linear-gradient(
+        to right,
+        #C5DDD6 0px,
+        #C5DDD6 20px,
+        #90CAF9 20px,
+        #90CAF9 40px,
+        to bottom,
+        #C5DDD6 0px,
+        #C5DDD6 20px,
+        #90CAF9 20px,
+        #90CAF9 40px 
+      );
 }
 
 .btn {
