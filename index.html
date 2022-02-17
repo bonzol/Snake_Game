@@ -30,18 +30,20 @@
 <div class="containerCol">
     <button class="btn" onclick="start()">Bring It On</button>
 </div>
+<div onclick="showKeys()">
+    <p id="help">I'm not good with touch... Can I get keys?</p>
+    <p id="help2">(It's OK, just click here :-)</p>
+</div>
 <div id="outkeys">
     <div id="keys">
         <div class="up">
             <button class="btnkeys" id="up" ontouchstart="keyDir('ArrowUp')">Up</button>
-
         </div>
         <div class="left">
             <button class="btnkeys" id="left" ontouchstart="keyDir('ArrowLeft')">Left</button>
             <button class="btnkeys" id="right" ontouchstart="keyDir('ArrowRight')">Right</button>
         </div>
         <div class="up">
-
             <button class="btnkeys" id="down"  ontouchstart="keyDir('ArrowDown')">Down</button>
         </div>
     </div>

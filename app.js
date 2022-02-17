@@ -460,3 +460,13 @@ function startAgain() {
     document.getElementById("score").innerHTML = snake.points;
     bomb.place = [];
 }
+
+async function showKeys() {
+    document.getElementById('help').classList.add('animate')
+    document.getElementById('help2').classList.add('animate')
+    setTimeout(function() {
+        document.getElementById('help').style.display = 'none';
+        document.getElementById('help2').style.display = 'none';
+        document.getElementById('keys').style.display = 'flex'
+    }, 3000);
+}

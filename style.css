@@ -81,7 +81,7 @@ input {
 #keys {
   margin-top: 5px;
   height: 20%;
-  display: flex;
+  display: none;
   flex-direction: column;
 
 }
@@ -96,7 +96,17 @@ input {
   display: flex;
   justify-content: space-between;
 }
-
+#help {
+  margin-top: 12vw;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+}
+#help2 {
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+  font-size: 80%;
+  margin-top: -2vw;
+}
 @media only screen and (min-width: 900px) {
     input {
         width: 100%;
@@ -116,9 +126,22 @@ input {
     #score {
       margin-top: -10px;
     }
-    #keys {
+    #keys, #help, #help2 {
       display: none;
     }
+}
+
+@keyframes fade {
+  0%   {opacity: 1;}
+  25%  {opacity: 0.8;}
+  50%  {opacity: 0.5;}
+  75%  {opacity: 0.3;}
+  100% {opacity: 0;}
+}
+
+.animate {
+  animation-name: fade;
+  animation-duration: 3s;
 }
 
 @font-face {
