@@ -224,7 +224,6 @@ function move() {
     checkOutOfBounds();
     checkifEaten();
     next();
-    dirchange = true;
     buildSnake();
     ctx.clearRect(snake.lastPlace.x, snake.lastPlace.y, snake.size.width, snake.size.height);
     checkifEntwined();
@@ -245,6 +244,7 @@ function next() {
     } else if(snake.direction === 'left') {
         snake.place[0].x -= 20;
     } 
+    dirchange = true;
 }
 
 function checkOutOfBounds() {
