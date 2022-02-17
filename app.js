@@ -168,7 +168,6 @@ function start() {
     }
     startFirst = true;
     if( is_touch_enabled() ) {
-        board.addEventListener('touchstart', logKeyMove);
         board.addEventListener('touchmove', logKeyMove);
     }
     else {
