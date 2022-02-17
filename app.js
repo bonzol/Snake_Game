@@ -82,6 +82,9 @@ function logKey(e) {
     if(dirchange) {
         keyDir(e.key);
         dirchange = false;
+        setTimeout(function(){
+            dirchange = true;
+        }, snake.speed()/3);
     }
 }
 
@@ -111,25 +114,29 @@ function logKeyMove(e) {
             } else {
                 dir = 'ArrowLeft';
             }
-            lastX = NaN;
-            currX = NaN;
-            lastY = NaN;
-            currY = NaN;
+            emptyMoves();
         } else if(diffY > 5) {
             if(currY - lastY > 0) {
                 dir = 'ArrowDown';
             } else {
                 dir = 'ArrowUp';
             }
-            lastX = NaN;
-            currX = NaN;
-            lastY = NaN;
-            currY = NaN;
+            emptyMoves();
         } 
         e.preventDefault();
+        keyDir(dir);
+        dirchange = false;
+        setTimeout(function(){
+            dirchange = true;
+        }, snake.speed()/3);
     }
-    keyDir(dir);
-    dirchange = false;
+
+    function emptyMoves() {
+        lastX = NaN;
+        currX = NaN;
+        lastY = NaN;
+        currY = NaN;
+    }
 }
 
 function keyDir(dir) {
@@ -250,7 +257,7 @@ function next() {
     } else if(snake.direction === 'left') {
         snake.place[0].x -= 20;
     } 
-    dirchange = true;
+    // dirchange = true;
 }
 
 function checkOutOfBounds() {
