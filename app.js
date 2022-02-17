@@ -28,8 +28,12 @@ var imgBombEx = new Image();
 imgBombEx.src = "img/BombEx.png";
 var endBomb = new Image();
 endBomb.src = "img/explosion.png";
+var imgFail = new Image();
+imgFail.src = "img/fail.png";
 
 var biteSound = new Audio("sound/bite.mp3")
+var boomSound = new Audio("sound/boom.mp3")
+var failSound = new Audio("sound/fail.mp3")
 
 class SnakeModel {
     constructor(){
@@ -290,6 +294,9 @@ function checkifEntwined() {
         setTemp.add(JSON.stringify(p));
     })
     if(setTemp.size != snake.place.length) {
+        ctx.drawImage(imgFail, 0, 30, 400, 400);
+        failSound.play();
+        drawGameOver(75);
         stopGame();
     }
 }
@@ -297,11 +304,19 @@ function checkifEatBomb() {
     bomb.place.forEach((p) => {
         if(JSON.stringify(snake.place[0]) == JSON.stringify(p)) {
             ctx.drawImage(endBomb, -50, -50, 500, 500);
+            boomSound.play();
+            drawGameOver(220);
             stopGame();
         }
     })
 }
 
+function drawGameOver(num) {
+    ctx.textAlign = "center";
+    ctx.font = "65px LazenbyCompSmooth";
+    ctx.fillStyle = "black";    
+    ctx.fillText("GAME OVER",200, num);
+}
 
 function stopGame() {
     clearInterval(repeater);
@@ -317,10 +332,7 @@ function stopGame() {
         localStorage.setItem('highScore', highScore);
     }
     document.getElementById("highScore").innerText = "High Score: " + highScore; 
-    ctx.textAlign = "center";
-    ctx.font = "60px LazenbyCompSmooth";
-    ctx.fillStyle = "black";    
-    ctx.fillText("GAME OVER",200, 220);
+   
 }
 
 function growSnake() {
