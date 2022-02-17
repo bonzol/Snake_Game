@@ -195,8 +195,23 @@ function init() {
     document.getElementById("highScore").innerText = "High Score: " + highScore; 
 }
 
+function initSound() {
+    biteSound.volume = 0;
+    boomSound.volume = 0;
+    failSound.volume = 0;
+    biteSound.play();
+    biteSound.pause();
+    boomSound.play();
+    boomSound.pause();
+    failSound.play();
+    failSound.pause();
+    biteSound.volume = 1;
+    boomSound.volume = 1;
+    failSound.volume = 1;
+}
 
 function start() {
+    initSound();
     userLevel = document.getElementById("youAre").value;
     if(startFirst) {
         startAgain();
