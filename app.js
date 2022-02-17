@@ -70,9 +70,60 @@ const bomb = {
     }
 }
 
-// switch case for arrow key log
+var dirchange = true;
+
 function logKey(e) {
-    keyDir(e.key);
+    if(dirchange) {
+        keyDir(e.key);
+        dirchange = false;
+    }
+}
+
+var lastX = NaN;
+var currX = NaN;
+var lastY = NaN;
+var currY = NaN;
+var dir = 'ArrowRight';
+function logKeyMove(e) {
+    if(e.touches && dirchange) {
+        if(e.type === 'touchstart') {
+            currX = e.touches[0].pageX;
+            currY = e.touches[0].pageY;
+            return;
+        } else {
+            lastX = currX;
+            lastY = currY;
+            currX = e.touches[0].pageX;
+            currY = e.touches[0].pageY;
+        }
+        diffX = Math.abs(currX - lastX);
+        diffY = Math.abs(currY - lastY);
+        
+        if(diffX > 5) {
+            if(currX - lastX > 0) {
+                dir = 'ArrowRight';
+            } else {
+                dir = 'ArrowLeft';
+            }
+            lastX = NaN;
+            currX = NaN;
+            lastY = NaN;
+            currY = NaN;
+        } else if(diffY > 5) {
+            if(currY - lastY > 0) {
+                dir = 'ArrowDown';
+            } else {
+                dir = 'ArrowUp';
+            }
+            lastX = NaN;
+            currX = NaN;
+            lastY = NaN;
+            currY = NaN;
+        } 
+        e.preventDefault();
+    }
+    keyDir(dir);
+    dirchange = false;
 }
 
 function keyDir(dir) {
@@ -106,51 +157,7 @@ function keyDir(dir) {
     }
 }
 
-var lastX = NaN;
-var currX = NaN;
-var lastY = NaN;
-var currY = NaN;
-var dir = 'ArrowRight';
-function logKeyMove(e) {
-    if(e.touches) {
-        if(e.type === 'touchstart') {
-            currX = e.touches[0].pageX;
-            currY = e.touches[0].pageY;
-            return;
-        } else {
-            lastX = currX;
-            lastY = currY;
-            currX = e.touches[0].pageX;
-            currY = e.touches[0].pageY;
-        }
-        diffX = Math.abs(currX - lastX);
-        diffY = Math.abs(currY - lastY);
-        
-        if(diffX > 10) {
-            if(currX - lastX > 0) {
-                dir = 'ArrowRight';
-            } else {
-                dir = 'ArrowLeft';
-            }
-            lastX = NaN;
-            currX = NaN;
-            lastY = NaN;
-            currY = NaN;
-        } else if(diffY > 10) {
-            if(currY - lastY > 0) {
-                dir = 'ArrowDown';
-            } else {
-                dir = 'ArrowUp';
-            }
-            lastX = NaN;
-            currX = NaN;
-            lastY = NaN;
-            currY = NaN;
-        } 
-        e.preventDefault();
-    }
-    keyDir(dir);
-}
+
 
 function is_touch_enabled() {
     return ( 'ontouchstart' in window ) ||
@@ -217,6 +224,7 @@ function move() {
     checkOutOfBounds();
     checkifEaten();
     next();
+    dirchange = true;
     buildSnake();
     ctx.clearRect(snake.lastPlace.x, snake.lastPlace.y, snake.size.width, snake.size.height);
     checkifEntwined();
