@@ -206,11 +206,11 @@ function initSound() {
     boomSound.volume = 0;
     failSound.volume = 0;
     biteSound.play();
-    biteSound.pause();
-    boomSound.play();
-    boomSound.pause();
     failSound.play();
+    boomSound.play();
+    biteSound.pause();
     failSound.pause();
+    boomSound.pause();
     biteSound.volume = 1;
     boomSound.volume = 1;
     failSound.volume = 1;
