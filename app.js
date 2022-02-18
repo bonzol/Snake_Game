@@ -176,6 +176,19 @@ function is_touch_enabled() {
            ( navigator.msMaxTouchPoints > 0 );
 }
 
+function preventZoom(e) {
+    var t2 = e.timeStamp;
+    var t1 = e.currentTarget.dataset.lastTouch || t2;
+    var dt = t2 - t1;
+    var fingers = e.touches.length;
+    e.currentTarget.dataset.lastTouch = t2;
+  
+    if (!dt || dt > 500 || fingers > 1) return; // not double-tap
+  
+    e.preventDefault();
+    e.target.click();
+  }
+
     var snake = new SnakeModel();
     var startFirst = false;
 
@@ -193,7 +206,8 @@ function init() {
     document.getElementById("highScore").innerText = "High Score: " + highScore; 
     if( is_touch_enabled() ) {
         board.addEventListener('touchstart', logKeyMove);
-        board.addEventListener('touchmove', logKeyMove);        
+        board.addEventListener('touchmove', logKeyMove);
+        document.getElementById('keys').addEventListener('touchstart', preventZoom);         
     }
     else {
         document.addEventListener('keydown', logKey);
@@ -215,6 +229,7 @@ function initSound() {
     boomSound.volume = 1;
     failSound.volume = 1;
 }
+
 
 function start() {
     userLevel = document.getElementById("youAre").value;
@@ -473,5 +488,5 @@ async function showKeys() {
         document.getElementById('start').classList.add('fadein')
         document.getElementById('keys').style.display = 'flex'
         document.getElementById('keys').classList.add('fadein')
-    }, 1900);
+    }, 900);
 }
