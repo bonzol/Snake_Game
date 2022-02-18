@@ -22,15 +22,15 @@
             </div>
         <p id="score">0</p>
     </div>
-            <div>
-                <canvas id="snakeboard" width="400" height="400"></canvas>
-                <p id="highScore"></p>
-            </div>
-           
-<div class="containerCol">
-    <button class="btn" onclick="start()">Bring It On</button>
+    <div>
+        <canvas id="snakeboard" width="400" height="400"></canvas>
+        <p id="highScore"></p>
+     </div>
+    
+<div class="containerCol" id="colFade">
+    <button class="btn" onclick="start()" id="start">Bring It On</button>
 </div>
-<div onclick="showKeys()">
+<div onclick="showKeys()" id="helps">
     <p id="help">I'm not good with touch... Can I get keys?</p>
     <p id="help2">(It's OK, just click here :-)</p>
 </div>
@@ -48,6 +48,7 @@
         </div>
     </div>
 </div>
+
     <script src="./app.js"></script>
 </body>
 </html>

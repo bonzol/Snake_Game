@@ -197,6 +197,7 @@ function init() {
     }
     else {
         document.addEventListener('keydown', logKey);
+        document.getElementById('helps').remove();
     }
 }
 
@@ -462,11 +463,15 @@ function startAgain() {
 }
 
 async function showKeys() {
-    document.getElementById('help').classList.add('animate')
-    document.getElementById('help2').classList.add('animate')
+    document.getElementById('help').classList.add('fade')
+    document.getElementById('help2').classList.add('fade')
+    document.getElementById('start').classList.add('fade')
     setTimeout(function() {
         document.getElementById('help').style.display = 'none';
         document.getElementById('help2').style.display = 'none';
+        document.getElementById('start').classList.add('aftermove')
+        document.getElementById('start').classList.add('fadein')
         document.getElementById('keys').style.display = 'flex'
-    }, 3000);
+        document.getElementById('keys').classList.add('fadein')
+    }, 1900);
 }
