@@ -80,7 +80,7 @@ input {
 }
 
 #keys {
-  margin-top: 55px;
+  margin-top: 40px;
   height: 20%;
   display: none;
   flex-direction: column;
