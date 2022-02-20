@@ -171,6 +171,9 @@ input {
 @keyframes rollin {
   0% {transform: translate(0, -420%);}
 }
+@keyframes rollout {
+  100% {transform: translate(0, 1700%);}
+}
 
 
 .fade {
@@ -184,6 +187,9 @@ input {
 }
 .rollin {
   animation: rollin 1s linear;
+}
+.rollout {
+  animation: rollout 200ms linear forwards;
 }
 
 .aftermove {
