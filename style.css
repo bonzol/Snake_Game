@@ -17,7 +17,6 @@ body {
 p {
     margin-top: 1vh;
     font-family: LazenbyCompSmooth;
-
 }
 .containerRow {
     display: flex;
@@ -143,12 +142,19 @@ input {
   0%   {opacity: 0;}
   100% {opacity: 1;}
 }
+@keyframes rollin {
+  0% {margin-top: 200%;}
+}
+
 
 .fade {
   animation: fade 1s linear;
 }
 .fadein {
-  animation: fadein 1s linear;
+  animation: fadein 2s linear;
+}
+.rollin {
+  animation: rollin 1s linear;
 }
 
 .aftermove {

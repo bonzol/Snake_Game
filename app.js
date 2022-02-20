@@ -481,12 +481,12 @@ async function showKeys() {
     document.getElementById('help').classList.add('fade')
     document.getElementById('help2').classList.add('fade')
     document.getElementById('start').classList.add('fade')
+    document.getElementById('keys').style.display = 'flex'
+    document.getElementById('keys').classList.add('rollin')
+    document.getElementById('help').style.display = 'none';
+    document.getElementById('help2').style.display = 'none';
     setTimeout(function() {
-        document.getElementById('help').style.display = 'none';
-        document.getElementById('help2').style.display = 'none';
         document.getElementById('start').classList.add('aftermove')
         document.getElementById('start').classList.add('fadein')
-        document.getElementById('keys').style.display = 'flex'
-        document.getElementById('keys').classList.add('fadein')
-    }, 900);
+    }, 300);
 }
