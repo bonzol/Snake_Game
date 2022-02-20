@@ -76,7 +76,6 @@ input {
   justify-content: center;
   align-items: center;
   margin-bottom: 5%;
-  
 }
 
 #keys {
@@ -87,7 +86,7 @@ input {
 
 }
 .up, .left {
-  width: 40vw;
+  width: 55vw;
 }
 .up {
   display: flex;
