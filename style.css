@@ -47,13 +47,13 @@ input {
 }
 .btnkeys {
     padding: 15px;
-    width: 15vw;
+    width: 23vw;
     border-radius: 20%;
     background-color: rgba(232, 234, 236, 0.685);
     color: #000000; 
     margin: 5px;
     font-family: LazenbyCompSmooth;
-    font-size: 70%;
+    font-size: 80%;
 }
 
 
@@ -76,10 +76,11 @@ input {
   justify-content: center;
   align-items: center;
   margin-bottom: 5%;
+  
 }
 
 #keys {
-  margin-top: 5px;
+  margin-top: 55px;
   height: 20%;
   display: none;
   flex-direction: column;
