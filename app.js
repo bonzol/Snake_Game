@@ -234,7 +234,7 @@ function init() {
         board.addEventListener('touchstart', logKeyMove);
         board.addEventListener('touchmove', logKeyMove);
         document.getElementById('keys').addEventListener('touchstart', preventZoom);
-        document.getElementById("innote").innerHTML += "<p>and you can move with your finger</p>"         
+        document.getElementById("innote").innerHTML += "<p>And you can move the snake with your finger</p>"         
     }
     else {
         document.addEventListener('keydown', logKey);
