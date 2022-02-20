@@ -160,6 +160,14 @@ input {
   0%   {opacity: 0;}
   100% {opacity: 1;}
 }
+@keyframes fadein2 {
+  0% {opacity: 0.15;}
+  20% {opacity: 0.35;}
+  40% {opacity: 0.55;}
+  60% {opacity: 0.75;}
+  80% {opacity: 0.85;}
+  100% {opacity: 1;}
+}
 @keyframes rollin {
   0% {margin-top: 200%;}
 }
@@ -170,6 +178,9 @@ input {
 }
 .fadein {
   animation: fadein 2s linear;
+}
+.fadein2 {
+  animation: fadein2 2s linear forwards;
 }
 .rollin {
   animation: rollin 1s linear;

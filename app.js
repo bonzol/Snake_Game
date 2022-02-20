@@ -204,9 +204,16 @@ function removenote() {
     const divs = document.querySelectorAll("div");
     divs.forEach((d)=>{
         if(d.id == 'note' || d.id == "innote") {
-            d.style.display = "none"
+            d.classList.add("fade")
+            setTimeout(function(){d.style.display = "none"}, 1000)
+            
+        } else {
+            d.classList.add("fadein2")
+            setTimeout(function(){d.classList.remove("blur")}, 900)
+
         }
-        d.classList.remove("blur")
+
+        
     })
 }
 
