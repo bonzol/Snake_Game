@@ -192,7 +192,26 @@ function preventZoom(e) {
     var snake = new SnakeModel();
     var startFirst = false;
 
+function note() {
+    const divs = document.querySelectorAll("div");
+    divs.forEach((d)=>{
+        if(d.id == 'note' || d.id == "innote") return
+        d.classList.add("blur")
+    })
+}
+
+function removenote() {
+    const divs = document.querySelectorAll("div");
+    divs.forEach((d)=>{
+        if(d.id == 'note' || d.id == "innote") {
+            d.style.display = "none"
+        }
+        d.classList.remove("blur")
+    })
+}
+
 function init() {
+    note();
     board.style.width = BOARD_WIDTH + "px";
     board.style.height = BOARD_HEIGHT + "px";
     board.style.border = "2px solid black";
@@ -207,7 +226,8 @@ function init() {
     if( is_touch_enabled() ) {
         board.addEventListener('touchstart', logKeyMove);
         board.addEventListener('touchmove', logKeyMove);
-        document.getElementById('keys').addEventListener('touchstart', preventZoom);         
+        document.getElementById('keys').addEventListener('touchstart', preventZoom);
+        document.getElementById("innote").innerHTML += "<p>and you can move with your finger</p>"         
     }
     else {
         document.addEventListener('keydown', logKey);

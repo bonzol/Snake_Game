@@ -107,8 +107,26 @@ input {
   font-size: 80%;
   margin-top: -2vw;
 }
+.note {
+  position: absolute;
+  text-align: center;
+  opacity: 1;
+  top: 28%;
+  width: 100%;
+  font-variant: small-caps;
+  font-size: larger;
+}
+.blur {
+  opacity: 0.15;
+}
 @media only screen and (min-width: 900px) {
-    input {
+  .note {
+    position: absolute;
+    text-align: center;
+    opacity: 1;
+    top: 35%;
+  } 
+  input {
         width: 100%;
     }
     .containerRow {
