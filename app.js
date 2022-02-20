@@ -198,6 +198,7 @@ function note() {
         if(d.id == 'note' || d.id == "innote") return
         d.classList.add("blur")
     })
+    disableButtons();
 }
 
 function removenote() {
@@ -206,15 +207,21 @@ function removenote() {
         if(d.id == 'note' || d.id == "innote") {
             d.classList.add("fade")
             setTimeout(function(){d.style.display = "none"}, 1000)
-            
         } else {
             d.classList.add("fadein2")
             setTimeout(function(){d.classList.remove("blur")}, 900)
-
         }
-
-        
     })
+    activeButtons();
+}
+
+function disableButtons() {
+    document.getElementById("youAre").disabled = true;
+    document.getElementById("start").disabled = true;
+}
+function activeButtons() {
+    document.getElementById("youAre").disabled = false;
+    document.getElementById("start").disabled = false;
 }
 
 function init() {
