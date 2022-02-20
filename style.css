@@ -174,10 +174,59 @@ input {
 @keyframes rollout {
   100% {transform: translate(0, 1700%);}
 }
+@keyframes jumphover {
+  50% {transform: translate(0, -18%);}
+  65% {transform: translate(0, -15%);}
+  100% {transform: translate(0, 0);}
+}
+@keyframes jumpclick {
+  50% {transform: translate(0, -25%);}
+  65% {transform: translate(0, -20%)}
+  80% {transform: translate(0, -10%)}
+  100% {transform: translate(0, 0);}
+}
+@keyframes eat {
+  0% {transform: translate(0.5%, 0);}
+  20% {transform: translate(-0.6%, 0);}
+  40%  {transform: translate(0, -0.5%);}
+  60%  {transform: translate(0.5%, 0.2%);}
+  80%  {transform: translate(-0.2%, 0);}
+  100%  {transform: translate(0, 0);}
+}
+@keyframes boom {
+  0% {transform: translate(1%, 0); color: red;}
+  10% {transform: translate(-1.2%, 0);}
+  15%  {transform: translate(1%, -1.5%);}
+  20%  {transform: translate(3.2%, 0.9%);}
+  25%  {transform: translate(-1%, 0);color: yellow;}
+  30% {transform: translate(-1.2%, 3%);}
+  35%  {transform: translate(1.2%, 0.9%);color: white;}
+  40%  {transform: translate(-1%, 2);}
+  42% {transform: translate(-1.2%, 3%);color: yellow;}
+  45%  {transform: translate(0, -1.5%);}
+  60%  {transform: translate(1.2%, 0.9%);color: black}
+  65%  {transform: translate(-1%, 1.5);}
+  70% {transform: translate(-1.2%, -1.4%);color: red;}
+  80%  {transform: translate(2, -1.5%);}
+  90%  {transform: translate(1.2%, 0.9%);color: orange}
+  95%  {transform: translate(-1%, 0);}
+  100%  {transform: translate(0, 0);}
+}
+#start:hover {
+  animation: jumphover 1s linear;
+}
+.jumpclick {
+  animation: jumpclick 2s linear;
+}
 
-
+.eat {
+  animation: eat 1s linear;
+}
+.boom {
+  animation: boom 2s linear;
+}
 .fade {
-  animation: fade 1s linear;
+  animation: fade 1.5s linear;
 }
 .fadein {
   animation: fadein 2s linear;

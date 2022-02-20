@@ -266,6 +266,11 @@ function initSound() {
 
 
 function start() {
+    if(is_touch_enabled()){
+        document.getElementById("start").classList.add("jumpclick");
+        setTimeout(function(){document.getElementById("start").classList.remove("jumpclick")}, 2010)
+    } 
+        
     userLevel = document.getElementById("youAre").value;
     if(startFirst) {
         startAgain();
@@ -337,6 +342,8 @@ function checkOutOfBounds() {
 
 function checkifEaten() {
     if(JSON.stringify(snake.place[0]) == JSON.stringify(food.place)) {
+        board.classList.add("eat")
+        setTimeout(function(){board.classList.remove("eat")}, 1010)
         biteSound.play();
         snake.points += 10;
         checkLevel();
@@ -373,6 +380,13 @@ function checkifEntwined() {
 function checkifEatBomb() {
     bomb.place.forEach((p) => {
         if(JSON.stringify(snake.place[0]) == JSON.stringify(p)) {
+            board.classList.add("boom")
+            setTimeout(function(){board.classList.remove("boom")}, 3010)
+            const all = document.querySelectorAll("p")
+            all.forEach((p)=>{
+                p.classList.add("boom")
+                setTimeout(function(){p.classList.remove("boom")}, 3010)
+            })
             ctx.drawImage(endBomb, -50, -50, 500, 500);
             boomSound.play();
             drawGameOver(220);
