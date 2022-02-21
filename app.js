@@ -226,7 +226,6 @@ function activeButtons() {
 
 function init() {
     note();
-    localStorage.clear();
     board.style.width = BOARD_WIDTH + "px";
     board.style.height = BOARD_HEIGHT + "px";
     board.style.border = "2px solid black";
@@ -545,9 +544,9 @@ async function showKeys() {
     document.getElementById('help').classList.add('rollout')
     document.getElementById('help2').classList.add('rollout')
     document.getElementById('start').classList.add('fade')
-    document.getElementById('keys').style.display = 'flex'
-    document.getElementById('keys').classList.add('rollin')
     setTimeout(function() {
+        document.getElementById('keys').style.display = 'flex'
+        document.getElementById('keys').classList.add('rollin')
         document.getElementById('start').classList.add('aftermove')
         document.getElementById('start').classList.add('fadein')
         document.getElementById('help').style.display = 'none';

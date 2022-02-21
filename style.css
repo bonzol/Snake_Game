@@ -199,7 +199,6 @@ input {
 }
 
 @keyframes fade {
-  0%   {opacity: 1;}
   100% {opacity: 0;}
 }
 @keyframes fadein {
@@ -311,7 +310,7 @@ input {
   animation: boom 2s linear;
 }
 .fade {
-  animation: fade 1.5s linear;
+  animation: fade 2s linear;
 }
 .fadein {
   animation: fadein 2s linear;
