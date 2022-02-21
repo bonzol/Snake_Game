@@ -116,10 +116,56 @@ input {
   font-variant: small-caps;
   font-size: larger;
 }
+.newhighscore1 {
+  display: none;
+  bottom: 100vw;
+  position: absolute;
+  text-align: center;
+  width: 60vw;
+  font-size: x-large;
+  border: 1px solid black;
+  border-radius: 6.5%;
+  padding: 3%;
+  background-color: rgba(230, 192, 122, 0.774);
+  -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+}
+.newhighscore2 {
+  display: none;
+  bottom: 100vh;
+  position: absolute;
+  text-align: center;
+  width: 60vw;
+  font-variant: small-caps;
+  font-size: x-large;
+}
 .blur {
   opacity: 0.15;
 }
 @media only screen and (min-width: 900px) {
+  .newhighscore1 {
+    display: none;
+    bottom: 100vw;
+    position: absolute;
+    text-align: center;
+    width: 23vw;
+    font-size: x-large;
+    border: 1px solid black;
+    border-radius: 6.5%;
+    padding: 3%;
+    background-color: rgba(230, 192, 122, 0.774);
+    -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
+    box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+  }
+  .newhighscore2 {
+    display: none;
+    bottom: 100vh;
+    position: absolute;
+    text-align: center;
+    width: 23vw;
+    font-variant: small-caps;
+    font-size: x-large;
+  }
   .note {
     position: absolute;
     text-align: center;
@@ -212,6 +258,45 @@ input {
   95%  {transform: translate(-1%, 0);}
   100%  {transform: translate(0, 0);}
 }
+
+@keyframes slideIn1 {
+  0%{bottom:100vh;}
+  20%{bottom: 0;}
+  30%{bottom: 38vh;}
+  32%{bottom: 39vh;}
+  34%{bottom: 41vh;}
+  36%{bottom: 40vh;}
+  38%{bottom: 39vh;}
+  40%{bottom: 38vh;}
+  42%{bottom: 39vh;}
+  44%{bottom: 41vh;}
+  46%{bottom: 39vh;}
+  48%{bottom: 39vh;}
+  70%{bottom: 40vh;}
+  92%{bottom: 42vh;}
+  100%{bottom: 100vh;}
+}
+@keyframes slideIn2 {
+  0%{bottom:100vh;}
+  42%{bottom: 100vh;}
+  44%{bottom: 38vh;}
+  46%{bottom: 39vh;}
+  48%{bottom: 40vh;}
+  50%{bottom: 38vh;}
+  52%{bottom: 37vh;}
+  70%{bottom: 40vh;}
+  92%{bottom: 42vh;}
+  100%{bottom: 100vh;}
+}
+.slideIn1 {
+  display: inline;
+  animation: slideIn1 6s linear;
+}
+.slideIn2 {
+  display: inline;
+  animation: slideIn2 6s linear;
+}
+
 #start:hover {
   animation: jumphover 1s linear;
 }

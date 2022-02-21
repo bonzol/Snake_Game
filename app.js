@@ -226,6 +226,7 @@ function activeButtons() {
 
 function init() {
     note();
+    localStorage.clear();
     board.style.width = BOARD_WIDTH + "px";
     board.style.height = BOARD_HEIGHT + "px";
     board.style.border = "2px solid black";
@@ -412,12 +413,27 @@ function stopGame() {
     }
     let newScore = parseInt(document.getElementById("score").innerHTML);
     if(newScore > highScore) {
+        slideInHighScore();
         highScore = newScore;
         localStorage.setItem('highScore', highScore);
     }
     document.getElementById("highScore").innerText = "High Score: " + highScore; 
    
 }
+
+function slideInHighScore() {
+    const p1 = document.getElementById("newhighscore1");
+    const p2 = document.getElementById("newhighscore2");
+    p1.classList.remove("fadein2")
+    p2.classList.remove("fadein2")
+    p1.classList.add("slideIn1");
+    p2.classList.add("slideIn2");
+    setTimeout(function(){
+        p1.classList.remove("slideIn1")
+        p2.classList.remove("slideIn2")
+    }, 5940)
+}
+
 
 function growSnake() {
     if(snake.direction === 'right') {
