@@ -107,7 +107,7 @@ function logKeyMove(e) {
         }
         diffX = Math.abs(currX - lastX);
         diffY = Math.abs(currY - lastY);
-        
+
         if(diffX > 5) {
             if(currX - lastX > 0) {
                 dir = 'ArrowRight';
@@ -133,9 +133,9 @@ function logKeyMove(e) {
 
     function emptyMoves() {
         lastX = NaN;
-        currX = NaN;
         lastY = NaN;
-        currY = NaN;
+        // currX = NaN;
+        // currY = NaN;
     }
 }
 
