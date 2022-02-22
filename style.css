@@ -297,16 +297,16 @@ input {
   100%{bottom: 100vh;}
 }
 @keyframes movinghand {  
-  0% {right: 22vw; top: 25vh;}
+  0% {right: 22vw; top: 27vh;transform: rotate(0);}
   10% {right: 22vw; top: 22.5vh;}
-  20% {right: 22vw; top: 20vh;}
+  20% {right: 22vw; top: 20vh;transform: rotate(0);}
   30% {right: 22vw; top: 25vh;}
-  40% {right: 22vw; top: 30vh;}
+  40% {right: 22vw; top: 30vh; transform: rotate(180deg);}
   50% {right: 22vw; top: 25vh;}
-  60% {right: 33vw; top: 25vh;}
+  60% {right: 33vw; top: 25vh;transform: rotate(270deg);}
   70% {right: 22vw; top: 25vh;}
-  80% {right: 13vw; top: 25vh;}
-  100% {right: 22vw; top: 25vh;}
+  80% {right: 13vw; top: 25vh;transform: rotate(90deg);}
+  100% {right: 22vw; top: 27vh;}
 }
 .slideIn1 {
   display: inline;
