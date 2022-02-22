@@ -242,6 +242,7 @@ function init() {
         board.addEventListener('touchmove', logKeyMove);
         document.getElementById('keys').addEventListener('touchstart', preventZoom);
         document.getElementById("innote").innerHTML += "<p>And you can move the snake with your finger</p>"         
+        document.getElementById("innote").innerHTML += '<i class="fa-regular fa-hand-point-up" id="movinghand"></i>'         
     }
     else {
         document.addEventListener('keydown', logKey);

@@ -59,7 +59,13 @@ input {
     height: 7vh;
 }
 
-
+#movinghand {
+  position: absolute;
+  right: 22vw;
+  top: 25vh;
+  animation: movinghand 3s linear infinite;
+  font-size: xx-large;
+}
 
 .btn:hover {
     background-color: black;
@@ -289,6 +295,18 @@ input {
   70%{bottom: 40vh;}
   92%{bottom: 42vh;}
   100%{bottom: 100vh;}
+}
+@keyframes movinghand {  
+  0% {right: 22vw; top: 25vh;}
+  10% {right: 22vw; top: 22.5vh;}
+  20% {right: 22vw; top: 20vh;}
+  30% {right: 22vw; top: 25vh;}
+  40% {right: 22vw; top: 30vh;}
+  50% {right: 22vw; top: 25vh;}
+  60% {right: 33vw; top: 25vh;}
+  70% {right: 22vw; top: 25vh;}
+  80% {right: 13vw; top: 25vh;}
+  100% {right: 22vw; top: 25vh;}
 }
 .slideIn1 {
   display: inline;
