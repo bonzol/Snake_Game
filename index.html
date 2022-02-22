@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=450">
-    <title>Snake</title>
-    <link rel="icon" type="image/x-icon" href="img/food4.png">
-    <link rel="stylesheet" href="style.css">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=450">
+        <title>Snake</title>
+        <link rel="icon" type="image/x-icon" href="img/food4.png">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body onload="init()">
     <div class="containerCol">
@@ -37,14 +38,15 @@
 <div id="outkeys">
     <div id="keys">
         <div class="up">
-            <button class="btnkeys" id="up" ontouchstart="keyDir('ArrowUp')">Up</button>
+            <button class="btnkeys" id="up" ontouchstart="keyDir('ArrowUp')"><i class="fa-solid fa-angles-up"></i></button>
         </div>
         <div class="left">
-            <button class="btnkeys" id="left" ontouchstart="keyDir('ArrowLeft')">Left</button>
-            <button class="btnkeys" id="right" ontouchstart="keyDir('ArrowRight')">Right</button>
+            <button class="btnkeys" id="left" ontouchstart="keyDir('ArrowLeft')"><i class="fa-solid fa-angles-left"></i></button>
+            <button class="btnkeys" id="right" ontouchstart="keyDir('ArrowRight')"><i class="fa-solid fa-angles-right"></i></button>
         </div>
         <div class="up">
-            <button class="btnkeys" id="down"  ontouchstart="keyDir('ArrowDown')">Down</button>
+            <button class="btnkeys" id="down"  ontouchstart="keyDir('ArrowDown')"><i class="fa-solid fa-angles-down"></i></button>
+            
         </div>
     </div>
 </div>
