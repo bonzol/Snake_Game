@@ -28,8 +28,8 @@ var imgBombEx = new Image();
 imgBombEx.src = "img/BombEx.png";
 var endBomb = new Image();
 endBomb.src = "img/explosion.png";
-var imgFail = new Image();
-imgFail.src = "img/fail.png";
+var imgFail2 = new Image();
+imgFail2.src = "img/fail2.png";
 var imgHeadRight = new Image();
 imgHeadRight.src = "img/HeadRight.png";
 var imgHeadUp = new Image();
@@ -419,7 +419,7 @@ function checkifEntwined() {
         setTemp.add(JSON.stringify(p));
     })
     if(setTemp.size != snake.place.length) {
-        ctx.drawImage(imgFail, 0, 30, 400, 400);
+        ctx.drawImage(imgFail2, 0, 30, 400, 400);
         failSound.play();
         drawGameOver(75);
         stopGame();
