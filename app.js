@@ -5,8 +5,6 @@ var BOARD_HEIGHT = 400;
 var SNAKE_WIDTH = Math.sqrt(BOARD_WIDTH);
 var SNAKE_HEIGHT = Math.sqrt(BOARD_HEIGHT);
 var BOARD_COLOR = "#C5DDD6";
-var SNAKE_COLOR = "#000000";
-var SNAKE_HEAD_COLOR = "#FFFFFF";
 var userLevel = 50;
 var highScore;
 var timeouts = [];
@@ -227,7 +225,7 @@ function removenote() {
     divs.forEach((d)=>{
         if(d.id == 'note' || d.id == "innote") {
             d.classList.add("fade")
-            setTimeout(function(){d.style.display = "none"}, 1000)
+            setTimeout(function(){d.style.display = "none"}, 1900)
         } else {
             d.classList.add("fadein2")
             setTimeout(function(){d.classList.remove("blur")}, 900)
@@ -336,21 +334,7 @@ function buildSnake() {
         }
     })    
 }
-// function buildSnake() {
-//     snake.place.forEach((p) => {
-//         if(JSON.stringify(snake.place[0]) === JSON.stringify(p) ) { 
-//             ctx.fillStyle = SNAKE_HEAD_COLOR;
-//             ctx.strokeStyle = BOARD_COLOR;
-//             ctx.fillRect(p.x, p.y, snake.size.width, snake.size.height);
-//             ctx.strokeRect(p.x, p.y, snake.size.width, snake.size.height)
-//         } else {
-//             ctx.fillStyle = SNAKE_COLOR;
-//             ctx.strokeStyle = BOARD_COLOR;
-//             ctx.fillRect(p.x, p.y, snake.size.width, snake.size.height)
-//             ctx.strokeRect(p.x, p.y, snake.size.width, snake.size.height)
-//         }
-//     })    
-// }
+
 
 function move() {
     snake.lastPlace.x = snake.place[snake.place.length-1].x;
