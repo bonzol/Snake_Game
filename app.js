@@ -39,8 +39,15 @@ imgHeadLeft.src = "img/HeadLeft.png";
 var imgHeadDown = new Image();
 imgHeadDown.src = "img/HeadDown.png";
 const imgHead = [imgHeadRight, imgHeadDown, imgHeadLeft, imgHeadUp];
-var imgBody = new Image();
-imgBody.src = "img/Body.png";
+var imgBody1 = new Image();
+imgBody1.src = "img/Body1.png";
+var imgBody2 = new Image();
+imgBody2.src = "img/Body2.png";
+var imgBody3 = new Image();
+imgBody3.src = "img/Body3.png";
+var imgBody4 = new Image();
+imgBody4.src = "img/Body4.png";
+const imgBody = [imgBody1, imgBody2, imgBody3, imgBody4]
 var imgTail = new Image();
 imgTail.src = "img/Tail.png";
 
@@ -316,18 +323,14 @@ function buildSnake() {
                     headDir = 3;
                     break;
             }
-            ctx.strokeStyle = BOARD_COLOR;
-            ctx.strokeRect(p.x, p.y, snake.size.width, snake.size.height)
             ctx.drawImage(imgHead[headDir], p.x, p.y, snake.size.width, snake.size.height);
         } else if(JSON.stringify(snake.place[snake.place.length-1]) === JSON.stringify(p)) {
-            ctx.strokeStyle = BOARD_COLOR;
-            ctx.strokeRect(p.x, p.y, snake.size.width, snake.size.height)
             ctx.drawImage(imgTail, p.x, p.y, snake.size.width, snake.size.height);
         }
         else {
-            ctx.strokeStyle = BOARD_COLOR;
-            ctx.strokeRect(p.x, p.y, snake.size.width, snake.size.height)
-            ctx.drawImage(imgBody, p.x, p.y, snake.size.width, snake.size.height);
+            let bodyNum = Math.floor(Math.random()*4)
+            console.log(bodyNum);
+            ctx.drawImage(imgBody[bodyNum], p.x, p.y, snake.size.width, snake.size.height);
 
         }
     })    
