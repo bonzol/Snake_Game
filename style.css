@@ -151,6 +151,10 @@ input {
 .blur {
   opacity: 0.15;
 }
+#tiger {
+  cursor: pointer;
+
+}
 @media only screen and (min-width: 900px) {
   .newhighscore1 {
     display: none;
