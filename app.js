@@ -30,6 +30,19 @@ var endBomb = new Image();
 endBomb.src = "img/explosion.png";
 var imgFail = new Image();
 imgFail.src = "img/fail.png";
+var imgHeadRight = new Image();
+imgHeadRight.src = "img/HeadRight.png";
+var imgHeadUp = new Image();
+imgHeadUp.src = "img/HeadUp.png";
+var imgHeadLeft = new Image();
+imgHeadLeft.src = "img/HeadLeft.png";
+var imgHeadDown = new Image();
+imgHeadDown.src = "img/HeadDown.png";
+const imgHead = [imgHeadRight, imgHeadDown, imgHeadLeft, imgHeadUp];
+var imgBody = new Image();
+imgBody.src = "img/Body.png";
+var imgTail = new Image();
+imgTail.src = "img/Tail.png";
 
 var biteSound = new Audio("sound/bite.mp3")
 var boomSound = new Audio("sound/boom.mp3")
@@ -288,18 +301,52 @@ function start() {
 function buildSnake() {
     snake.place.forEach((p) => {
         if(JSON.stringify(snake.place[0]) === JSON.stringify(p) ) { 
-            ctx.fillStyle = SNAKE_HEAD_COLOR;
+            let headDir;
+            switch (snake.direction) {
+                case "right":
+                    headDir = 0;
+                    break;
+                case "down":
+                    headDir = 1;
+                    break;
+                case "left":
+                    headDir = 2;
+                    break;
+                case "up":
+                    headDir = 3;
+                    break;
+            }
             ctx.strokeStyle = BOARD_COLOR;
-            ctx.fillRect(p.x, p.y, snake.size.width, snake.size.height);
             ctx.strokeRect(p.x, p.y, snake.size.width, snake.size.height)
-        } else {
-            ctx.fillStyle = SNAKE_COLOR;
+            ctx.drawImage(imgHead[headDir], p.x, p.y, snake.size.width, snake.size.height);
+        } else if(JSON.stringify(snake.place[snake.place.length-1]) === JSON.stringify(p)) {
             ctx.strokeStyle = BOARD_COLOR;
-            ctx.fillRect(p.x, p.y, snake.size.width, snake.size.height)
             ctx.strokeRect(p.x, p.y, snake.size.width, snake.size.height)
+            ctx.drawImage(imgTail, p.x, p.y, snake.size.width, snake.size.height);
+        }
+        else {
+            ctx.strokeStyle = BOARD_COLOR;
+            ctx.strokeRect(p.x, p.y, snake.size.width, snake.size.height)
+            ctx.drawImage(imgBody, p.x, p.y, snake.size.width, snake.size.height);
+
         }
     })    
 }
+// function buildSnake() {
+//     snake.place.forEach((p) => {
+//         if(JSON.stringify(snake.place[0]) === JSON.stringify(p) ) { 
+//             ctx.fillStyle = SNAKE_HEAD_COLOR;
+//             ctx.strokeStyle = BOARD_COLOR;
+//             ctx.fillRect(p.x, p.y, snake.size.width, snake.size.height);
+//             ctx.strokeRect(p.x, p.y, snake.size.width, snake.size.height)
+//         } else {
+//             ctx.fillStyle = SNAKE_COLOR;
+//             ctx.strokeStyle = BOARD_COLOR;
+//             ctx.fillRect(p.x, p.y, snake.size.width, snake.size.height)
+//             ctx.strokeRect(p.x, p.y, snake.size.width, snake.size.height)
+//         }
+//     })    
+// }
 
 function move() {
     snake.lastPlace.x = snake.place[snake.place.length-1].x;
@@ -453,7 +500,6 @@ function buildFood() {
     food.place.y = cordinate.y;
     randomNum = Math.floor(Math.random() * 5);
     ctx.drawImage(foodImgs[randomNum], food.place.x, food.place.y, food.size.width, food.size.height);
-
 }
 
 function buildBomb() {    
