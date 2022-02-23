@@ -61,8 +61,8 @@ input {
 
 #movinghand {
   position: absolute;
-  right: 22vw;
-  top: 26vh;
+  right: 6vw;
+  top: 30vh;
   animation: movinghand 3s linear infinite;
   font-size: xx-large;
 }
@@ -302,17 +302,10 @@ input {
 }
 
 @keyframes movinghand {  
-  0% {right: 22vw; top: 26vh;transform: rotate(0);}
-  10% {right: 22vw; top: 21.5vh;}
-  20% {right: 22vw; top: 20vh;transform: rotate(0);}
-  30% {right: 22vw; top: 25vh;}
-  40% {right: 22vw; top: 30vh; transform: rotate(180deg);}
-  50% {right: 22vw; top: 26vh;}
-  60% {right: 33vw; top: 26vh;transform: rotate(270deg);}
-  70% {right: 22vw; top: 26vh;}
-  80% {right: 13vw; top: 26vh;transform: rotate(90deg);}
-  100% {right: 22vw; top: 26vh;}
+  50% {right: 88vw;}
+  100% {right: 6vw;transform: rotate(720deg);}
 }
+
 .slideIn1 {
   display: inline;
   animation: slideIn1 6s linear;

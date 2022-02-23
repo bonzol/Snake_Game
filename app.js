@@ -222,6 +222,7 @@ function note() {
 }
 
 function removenote() {
+    document.querySelector("body").removeEventListener("click", removenote)
     const divs = document.querySelectorAll("div");
     divs.forEach((d)=>{
         if(d.id == 'note' || d.id == "innote") {
@@ -257,6 +258,7 @@ function init() {
         highScore = localStorage.getItem('highScore');
     }
     document.getElementById("highScore").innerText = "High Score: " + highScore; 
+    document.querySelector("body").addEventListener("click", removenote)
     if( is_touch_enabled() ) {
         board.addEventListener('touchstart', logKeyMove);
         board.addEventListener('touchmove', logKeyMove);
