@@ -430,8 +430,8 @@ function checkifEntwined() {
 function checkifEatBomb() {
     bomb.place.forEach((p) => {
         if(JSON.stringify(snake.place[0]) == JSON.stringify(p)) {
-            board.classList.add("boom")
-            setTimeout(function(){board.classList.remove("boom")}, 3010)
+            board.classList.add("boom", "boom2")
+            setTimeout(function(){board.classList.remove("boom", "boom2")}, 3010)
             const all = document.querySelectorAll("p")
             all.forEach((p)=>{
                 p.classList.add("boom")
