@@ -381,7 +381,6 @@ function checkifEaten() {
         board.classList.add("eat")
         setTimeout(function(){board.classList.remove("eat")}, 1010)
         biteSound.play();
-        navigator.vibrate(200);
         snake.points += 10;
         checkLevel();
         document.getElementById("score").innerHTML = snake.points;
