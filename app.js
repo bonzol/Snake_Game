@@ -261,7 +261,7 @@ function init() {
         board.addEventListener('touchstart', logKeyMove);
         board.addEventListener('touchmove', logKeyMove);
         document.getElementById('keys').addEventListener('touchstart', preventZoom);
-        document.getElementById("innote").innerHTML += "<p>(you can move the tiger with your fingers)</p>"         
+        document.getElementById("innote").innerHTML += "<p>(you can move the tiger snake with your fingers)</p>"         
         document.getElementById("innote").innerHTML += '<i class="fa-regular fa-hand-point-up" id="movinghand"></i>'         
     }
     else {
