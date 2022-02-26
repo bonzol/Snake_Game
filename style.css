@@ -118,8 +118,8 @@ input {
 }
 #volume {
   position: absolute;
-  left: 2vw;
-  top: 2vh;
+  left: 15px;
+  top: 15px;
   cursor: pointer;
 }
 .note {

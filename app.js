@@ -238,14 +238,17 @@ function disableButtons() {
     document.getElementById("youAre").disabled = true;
     document.getElementById("start").disabled = true;
 }
+
 function activeButtons() {
     document.getElementById("youAre").disabled = false;
     document.getElementById("start").disabled = false;
+    document.getElementById("volume").addEventListener('click', toggleVolume);
 }
-function initVolume() {
-    document.querySelector("#volume").innerHTML = '<i class="fa-solid fa-volume-high"></i>';
-    document.getElementById("volume").addEventListener('click', toggleVolume)
-} 
+
+// function initVolume() {
+//     document.querySelector("#volume").innerHTML = '';
+// } 
+
 function toggleVolume() {
     if(volume) {
         document.querySelector("#volume").innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
@@ -264,7 +267,7 @@ function toggleVolume() {
 
 function init() {
     note();
-    initVolume()
+    // initVolume()
     board.style.width = BOARD_WIDTH + "px";
     board.style.height = BOARD_HEIGHT + "px";
     board.style.border = "2px solid black";
