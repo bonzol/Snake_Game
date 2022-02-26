@@ -116,6 +116,12 @@ input {
   font-size: 80%;
   margin-top: -2vw;
 }
+#volume {
+  position: absolute;
+  left: 2vw;
+  top: 2vh;
+  cursor: pointer;
+}
 .note {
   position: absolute;
   text-align: center;

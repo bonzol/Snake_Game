@@ -8,6 +8,7 @@ var BOARD_COLOR = "#C5DDD6";
 var userLevel = 50;
 var highScore;
 var timeouts = [];
+var volume = true;
 
 var foodImg1 = new Image();
 foodImg1.src = "img/food1.png"
@@ -152,8 +153,7 @@ function logKeyMove(e) {
     function emptyMoves() {
         lastX = NaN;
         lastY = NaN;
-        // currX = NaN;
-        // currY = NaN;
+
     }
 }
 
@@ -201,7 +201,7 @@ function preventZoom(e) {
     var fingers = e.touches.length;
     e.currentTarget.dataset.lastTouch = t2;
   
-    if (!dt || dt > 500 || fingers > 1) return; // not double-tap
+    if (!dt || dt > 500 || fingers > 1) return; 
   
     e.preventDefault();
     e.target.click();
@@ -242,9 +242,29 @@ function activeButtons() {
     document.getElementById("youAre").disabled = false;
     document.getElementById("start").disabled = false;
 }
+function initVolume() {
+    document.querySelector("#volume").innerHTML = '<i class="fa-solid fa-volume-high"></i>';
+    document.getElementById("volume").addEventListener('click', toggleVolume)
+} 
+function toggleVolume() {
+    if(volume) {
+        document.querySelector("#volume").innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+        volume = false;
+        biteSound.muted = true;
+        boomSound.muted = true;
+        failSound.muted = true;
+    } else {
+        document.querySelector("#volume").innerHTML = '<i class="fa-solid fa-volume-high"></i>';
+        volume = true;
+        biteSound.muted = false;
+        boomSound.muted = false;
+        failSound.muted = false;
+    }
+}
 
 function init() {
     note();
+    initVolume()
     board.style.width = BOARD_WIDTH + "px";
     board.style.height = BOARD_HEIGHT + "px";
     board.style.border = "2px solid black";
